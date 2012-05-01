@@ -1,0 +1,428 @@
+/********************************************************************************************
+	
+						README
+
+						I. 		How To / Q&A
+						II. 	Documentation
+						III.	Conventions
+						IV.		Controlled (Domain specifc) Vocabulary
+						V.		OS Requirements (Specificities)
+						VI.		Known Bugs
+						VII. 	Tests
+						VIII.	Future Features
+
+*********************************************************************************************/
+
+
+
+
+			  _                                                                  
+			 |_)  _   _  |  ._ _   _. ._ |    \    / _  ._ |  |_   _  ._   _ |_  
+			 |_) (_) (_) |< | | | (_| |  |<    \/\/ (_) |  |< |_) (/_ | | (_ | |
+
+			 	:: Questions, concerns, feature requests, bugs?
+
+			 			@email:		edg274@email.vccs.edu
+			 			@github: 	egman24
+			 			@skype:		erglassman
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+--------------
+[How To / Q&A]:
+--------------
+
+
+	**********
+	* Useful *
+	**********
+
+	>> How do I run the application?
+
+				Be sure you have Java SDK 6 installed...
+
+				Navigate to 'Bookmark_Workbench/Source_Code/'
+
+					1st: Compile (or just run the latest bytecode)
+					2nd: From CLI, execute --> > javac BookmarkWorkbench
+
+
+
+
+	***********************
+	* Borderline Useless *
+	***********************
+
+	>> How did I produce the application title ascii font in this readme?
+
+				http://patorjk.com/software/taag/
+
+
+	>> What kind of music did I listen to during development?
+
+				-->  The Magnetic Fields 
+				     "Wayward Bus"
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+---------------
+[Documentation]:
+---------------
+
+
+
+
+	See Documentation directory for more detailed information on:
+	
+		1. PMX ("Poor Man's Extensible Markup Language") 
+			See 'Bookmark_Workbench/Documentation/PMX_Documentation.txt'
+			
+				-- This is the homebrewed markup language I use to encode program input and storage.
+		
+		2. Browser and plugin suggestions and requrements
+			See 'Bookmark_Workbench/Documentation/BrowserAndPlugin_Documentation.txt'
+
+				-- 'TabInfoCopy' and Chrome are your best friends for the first iteration of Bookmark Workbench.
+
+		3. Requirements
+			See 'Bookmark_Workbench/Documentation/Requirements_*'
+
+				-- Logs of requirements documentation and project comments, titled by date.
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+-------------
+[Conventions]:
+-------------
+
+
+
+
+	* A 'Session File' should be titled as follows:
+
+		   'Session_201204281337.txt'
+                    -   - - -
+                    |   | | |
+                 Year   | | |
+                        | | |
+                    Month | |
+                          | |
+                        Day |
+ 							|
+ 			  Time (military)	
+
+
+
+
+
+ 	* A 'Session File' should have >=1 'URL Objects' in the proper format:
+
+ 			See 'Bookmark_Workbench/Documentation/PMX_Documentation.txt'
+
+ 			--> The title and URL can be extracted using 'TabInfoCopy'
+
+ 				See 'Bookmark_Workbench/Documentation/BrowserAndPlugin_Documentation.txt'
+
+
+
+
+
+ 	* Categories in manifest should be formatted for proper parsing, as follows:
+
+ 		[[Category]]one, two, three, four, five[[/Category]]
+        ------------   --					   -------------
+ 		|              |                       |
+ 		|			   |					   |
+ 		Open tag       |                       |
+ 					   (", ") between elements |
+ 					   						   |
+ 					   						   |
+ 					   						   Close tag
+
+
+
+
+
+ 	* Todos in manifest should be formatted for proper parsing, as follows:
+
+ 		[[ToDo]]*one, *two, *three, *four, *five, *six, *seven, *eight, *nine[[/ToDo]]
+ 		--------    --                            ----                       ---------
+ 		|			|                             |				             |
+ 		|			|		                      |							 |	
+ 		Open tag    |		                      |							 |
+ 					(", ") between elements	      |							 |
+ 							                      |							 |	
+ 							                      (*) connected to elements  |
+ 							                      							 |
+ 							                      							 Close tag
+ 	
+
+
+
+
+ 	* Notes in manifest should be formatted for proper parsing, as follows:
+
+ 		[[Notes]]Note to self: This is a note![[/Notes]]
+ 		---------                             ----------
+ 		|									  |
+ 		|									  |
+ 		Open tag  							  |
+ 											  Close tag
+
+
+
+
+ 											  
+----------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------
+[Controlled (Domain specific) Vocabulary]:
+-----------------------------------------
+
+
+	******************************
+	Entities, Objects and Elements
+    ******************************
+
+    "Session File"
+
+    "Url Object" 
+
+    	found in -- Session File, 
+    	makes up -- UrlCard attributes
+
+    "UrlCard"
+
+
+
+	'Manifest Parser'
+
+		1. [loads] or [creates blank] '*_main_manifest'
+		2. [reads] each line and determines LineType
+		3. [creates] 'UrlCards' in the running program's working memory 
+			--> from "Url Objects" in the '*_main_manifest'(persistant state manifest)
+
+			^^ also triggered by Session Parser when new Objects are added to the '*_main_manifest', runs method with logic to only load new files (similar to db migrations with date stamps?) ^^
+
+	'Category Parser'
+
+		^^ triggered by Manifest Parser ^^
+
+		1. [loads] or [creates blank] '*_category_manifest'
+		2. [reads] each line and only passes 'Category' data
+		3. [creates] 'CategoryCards' in the running program's working memory 
+			--> from '[[Category]]' in the '*_main_manifest'(persistant state manifest)
+
+	'Todo Parser'
+
+		^^ triggered by Manifest Parser ^^
+
+		1. [loads] or [creates blank] '*_todo_manifest'
+		2. [reads] each todo (title and url) while iterating through UrlObject
+		3. [creates] 'TodoList' in the running program's working memory 
+			--> from '[[ToDo]]' in the '*_main_manifest'(persistant state manifest)
+
+	'Session Parser'
+
+		1. [loads] a user "Session File" 
+		2. [reads] each line and determines LineType
+		3. [appends] each "Url Object" in proper format to '*_main_manifest'
+
+			^^ triggers Manifest Parser to run again (only adding new "Url Objects") ^^
+
+	'User Parser'
+
+	'Note Parser'
+
+
+
+	*********************
+	File Names/File Types
+	*********************
+
+
+	%%%%%															                        
+	%%%%%	
+	%%%%%    These files are created throughout the program's lifecycle on your machine.    
+	%%%%%
+	%%%%%
+    %%%%%	
+
+
+
+
+	'user_manifest'						
+
+
+		--Created when the program is first run
+		--Remains on your system until manually removed.
+
+		--A file with all previously registered user names. 
+			--Used to reference )
+			--User names stored with linebreaks?
+		--[Created/Updated] 			by: UserParser
+	
+
+
+
+	'*_main_manifest'
+
+
+		--Created when 
+		--Remains on your system until manually removed.
+		
+		-- A file with  , 
+			--Used to pull user data from persistant state to working memory
+			--
+		--[Created] 					by: Manifest Parser
+		--[Updated]						by: Session Parser
+		--[Brought into working memory] by: Manifest Parser
+
+
+
+
+	'*_category_manifest'
+
+
+		--Created when 
+		--Remains on your system until manually removed.
+
+		--
+		--[Created] 					by: Category Parser
+		--[Updated]						by: Session Parser
+		--[Brought into working memory] by: Category Parser
+
+
+
+
+	'*_todo_manifest'
+
+
+		--Created when 
+		--Remains on your system until manually removed.
+
+		--
+		--[Created] 					by: Todo Parser
+		--[Updated]						by: Session Parser
+		--[Brought into working memory] by: ToDo Parser
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+---------------------------------
+[OS Requirements (Specificities)]:
+---------------------------------
+
+
+
+
+	Bookmark Workbench has been written and tested in Linux(Ubuntu 10.10).
+
+	Some directory/file structure/CLI nuances may be different when using OSX or Windows.
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+------------
+[Known Bugs]:
+------------
+
+
+
+
+	//Title:
+	//Description:
+	//Reporter:
+	//Assigned to:
+	//Status: [Open | In Progress(by whom?) | Resolved] (Date: )
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+-------
+[Tests]:
+-------
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+-----------------
+[Future Features]:
+-----------------
+
+
+
+
+	A list of features I would like implemented after the initial requirements are met:
+
+
+
+
+	1. 		
+
+
+	Build browser plugins which can save session automatically in correct format.
+			
+			* The plugin should:
+
+				--> Save all open tabs to a 'History' directory, in proper format. 
+					(see [Conventions] section above)
+				--> Open up (popover window) an inline editor for user to add markup to the saved 'URLs'
+				--> Execute the 'Bookmark Workbench' program,
+					and add new 'Session File' to the 'Bookmark Workbench Main Manifest File'
+
+			* Plugins should be available for Chrome, FireFox, IE, and any other widely used browser.
+
+
+
+
+	2. 		
+
+
+	GUI for working with Bookmark Workbench (allow CLI use, but suppliment with GUI views).
+			
+			* The GUI should allow for rich designs and lens like views into the interlinked references. 
+				(see http://www.visual-literacy.org/periodic_table/periodic_table.html)
+
+				--> One example could be VenDiagrams which get populated with 'Category' titles 
+					--> These overlapping multi-colored circles can add insight into how 'URLs' are interrelated by 'Category' 
+
+			* The ability to create new views into the stored data should be very extensible.
+				--> There should be a well documented API for other programmers to use when creating
