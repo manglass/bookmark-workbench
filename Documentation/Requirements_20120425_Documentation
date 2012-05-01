@@ -1,0 +1,189 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Requirements Documentation: "Bookmark Management Workbench"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+Problem:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* When using the web for research I frequently end up with hundreds of open browser tabs that could be useful at some other point, if I were only able to add informative attributes to each url 'object' and group them based on customized categories.    
+
+* Bookmark management in most browsers allows for URL and title information only (no way to add more information or metainformation to the url 'objects').  I want a more robust system of interconnection and categorization upon archive.
+
+
+
+Solution:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+I would like a command line tool which parses lists of URLs ('browser session' text files) in a particular format and adds them to newly organized, specially formatted files located within a specially grouped directory structure of Categories (each Category directory should have a manifest file which describes everything within it and its own attributes).  Each URL object should have default Category of datetime added (042512_1305) and base domain (google == www.google.com/).
+
+
+To add extra spice I would like to add 2 more features to each URL and Category: 
+
+--> 'to do' attributes which indicate actions to be taken on certian URLs or Categories, a way to mark these attributes as 'Done', and a way to view a master list of these attributes arranged by Category and URL.
+
+--> a randomization process to surface URLS or Categories when I am in the mood to be presented with something interesting from the past.
+
+
+---- INPUT FORMAT ----
+
+Using google chrome and a browser extension 'tab info copy', URLS can be copied to the clipboard in a certian format (title/url) and necessary information can be paired with it in 'browser session' text files. Below is an example of one URL in the 'tab info copy' format (first two lines) with personal information added using my own 'markup':
+
+
+	user stories - Google Search
+	https://www.google.com/search?sourceid=chrome&ie=UTF-8&q=user+stories
+	[[Category]]software development, design, programming[[/Category]]
+	[[ToDo]]*Find books on software design and user stories, *Find youtube video on the subject[[/ToDo]]
+	[[Notes]]I read about these in a blog article about software design last week.[[/Notes]]
+
+
+---- OUTPUT FORMAT ----
+
+
+
+
+****URL**** (Text files within Category directory structure)
+
+--------------------------------------------------------------------------------------------------
+|  John Fahey - Albums - Grooveshark
+|
+|  http://grooveshark.com/#!/artist/John+Fahey/7272/albums
+|
+|  
+|  Found In [Catergories]: 
+|  ----------------------
+|	
+|	04252012_2105, grooveshark, music, John Fahey, 
+|
+|  To Do: 
+|  -----
+|
+|	* Add to list of music for work [DONE]
+|	* Search for similar artists []
+|
+|  Notes:
+|   -----
+|
+|	I first came upon John Fahey in a Vanguard collection at Sidetracks during recordstore day.
+|
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+****Category**** (manifest file within directory)
+
+---------------------------------------------------------------------------------------------------
+|   grooveshark
+|
+|        Notes:
+|        -------
+|
+|        These links are all of the artists to watch on grooveshark.
+|
+|
+|        URLS:
+|        ------
+	
+	|  John Fahey - Albums - Grooveshark
+	|
+	|  http://grooveshark.com/#!/artist/John+Fahey/7272/albums
+
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+**ToDo Manifest**
+
+---------------------------------------------------------------------------------------------------
+
+To Dos:
+
+-->grooveshark
+
+	|  John Fahey - Albums - Grooveshark
+	|
+	|  http://grooveshark.com/#!/artist/John+Fahey/7272/albums
+
+	* Add to list of music for work [Done]
+	* Search for similar artists []
+
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Controlled Vocabulary:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> Catergory (List, Card, Random) -- 
+--> xxx(List, Card, Random)       --
+--> To Do                          --
+
+
+
+Sample User story:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+As a      -- User
+Given     -- I run the Bookmark Manager
+When      -- I see the main menu
+Then	  -- I should be able to choose from the options seen below:
+
+
+******************
+Bookmark Workbench
+******************
+
+1. Add URL file
+
+2. List all Catergories
+3. List all URLS (by catergory)
+4. List all To Dos
+
+5. View a Catergory Card (arguement = Name -- refer to catergory list)
+6. View a URL Card (arguement = URL -- refer to catergory lists)
+
+7. Edit Category Card
+8. Edit URL Card
+
+9. Random URL
+10.Random Catergory
+
+11.Help (explain all the options and what they do)
+
+
+
+
+
+Design Notes:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In my view these requirements can very naturally be implemented using: 
+	* arrays (to manage urls and objects), 
+	* inheritance heriarchies and polymorphism (URL cards and Catergory cards can inherit from a more abstract 'card' class), 
+	* IO package tools, 
+	* exception handling and 
+	* regular expressions during the file parsing process.
+
+This seems as though it will be quite a complex undertaking (based on the time I have to implement).  I would *prefer* to have a GUI on top of this model, but will most likely work from the command line for this projects requirements.
+
+
+
+
+
+Test Notes:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+My plan is to setup: 
+	* unit tests within each class as a main method that tests each method and attribute
+	* error handling -- and then test each case/boundary. (incorrect data, file doesn’t exist…)
+	* Exploratory test with 'persona' scenarios (Try the progam using real browser sessions and needs).
+

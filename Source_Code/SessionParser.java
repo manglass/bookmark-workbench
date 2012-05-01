@@ -1,0 +1,166 @@
+/*****************************************************************************************
+SessionParser.java
+
+	1. [loads] a user "Session File" 
+	2. [reads] each line and determines LineType
+	3. [appends] each "Url Object" in proper format to '*_main_manifest'
+
+		^^ triggers Manifest Parser to run again (only adding new "Url Objects") ^^
+
+	Methods:
+
+		void main(String[]) //unit test method
+
+*****************************************************************************************/
+
+import java.util.*;
+import java.io.*;
+import java.util.regex.*;
+
+public class SessionParser extends Parser
+{
+	public static void get() throws IOException
+	{
+		Scanner scan = new Scanner(System.in);
+
+		UiCli.boilerPlate(MessageType.ManuallyAddBrowserSessionFile);
+
+		//do loop logic
+		boolean isFilenameCorrect = false;
+		int urlCount;
+		String fileName;
+
+		do {
+
+			urlCount = 0;
+
+			System.out.print("Enter your Session File name (with file extenstion): ");
+			fileName = scan.nextLine();
+			System.out.println();
+
+			try {
+			
+				Scanner fileScan = new Scanner(new File(fileName));	
+
+				//while loop initializer message
+				System.out.print("Loading ");
+
+				//prints exception and/or shows '0' urls if there are any file problems
+				while (fileScan.hasNext())
+				{
+					String line = fileScan.nextLine();
+					boolean urlLine = Pattern.matches("^http.*://.*", line);
+
+					System.out.print(".");
+
+					if(urlLine)
+						urlCount++;
+				}
+
+				System.out.println();
+				System.out.println();
+
+			} catch (Exception e) {System.err.println("Error: " + e.getMessage());
+  				                   System.err.println();}
+
+			System.out.println("There are " + urlCount + " urls in " + fileName + ", are you sure this is the correct file?");
+			System.out.println();
+
+			isFilenameCorrect = UiCli.userChoice(MessageType.YesOrNo);			
+
+		} while(isFilenameCorrect==false);		
+
+		initialize(fileName);
+	}
+
+	public static void initialize(String fileName) throws IOException
+	{
+		add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
+		load(fileName);
+		scrap();
+		ManifestParser.initialize(BookmarkWorkbench.mainManifest); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
+		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
+	}
+
+	public static void update(String line, LineStatus status, Scanner fileScan) 
+	{
+		boolean isUrlObjectComplete = false;
+
+		do {
+					
+			switch (status)
+			{
+				case BlankLine: 	{
+										add("", BookmarkWorkbench.mainManifest);
+										isUrlObjectComplete = true;
+									}
+										break;
+
+				case TitleLine: 	{
+										add(line, BookmarkWorkbench.mainManifest);
+										iterate(fileScan);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
+									}
+										break;
+
+				case UrlLine: 		{
+										add(line, BookmarkWorkbench.mainManifest);
+										iterate(fileScan);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
+									}
+										break;
+
+				case CategoryLine: 	{
+										add(line, BookmarkWorkbench.mainManifest);
+										iterate(fileScan);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
+									}
+										break;
+
+				case TodoLine: 		{
+										add(line, BookmarkWorkbench.mainManifest);
+										iterate(fileScan);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
+									}
+										break;
+
+				case NoteLine: 		{
+										add(line, BookmarkWorkbench.mainManifest);
+										iterate(fileScan);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
+									}
+										break;		
+
+				case OtherLine: 	{
+										UiCli.warningMessage(MessageType.ProblemParsingSessionFile);
+									}
+										break;
+			}
+
+		} while(isUrlObjectComplete==false);
+
+		add("", BookmarkWorkbench.mainManifest); //extra line break after the object finishes
+	}
+
+	private static void scrap()
+	{
+		//wipe active objects from program memory
+
+		UrlCard.allUrls.clear();
+		CategoryCard.allCategory.clear();
+		TodoCard.allTodoLists.clear();
+	}
+
+
+	//-------------------------------------------------------------------------------
+	// SessionParser.java Unit Tests:
+	//-------------------------------------------------------------------------------
+
+	public static void main(String[] args) throws IOException
+	{
+		//System.out.println("RUNNING: loadManifest(); ------------------------");
+		//String testManifest = "testUser_main_manifest.txt"; 
+		//load(testManifest);		
+		//System.out.println("END: loadManifest(); ------------------------");
+	}
+}

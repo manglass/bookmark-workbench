@@ -1,0 +1,184 @@
+/*****************************************************************************************
+UiCli.java
+
+This is a class of reusable partial UI elements.
+
+These are used in CLI views.  
+
+
+	Methods:
+		main(String[])	//unit test method
+
+*****************************************************************************************/
+
+import java.util.*;
+
+class UiCli extends Ui
+{
+	public static void boilerPlate(MessageType message)
+	{
+		switch(message)
+		{
+			case ListNumberOfCategoriesUrlsandToDos :
+			{
+				System.out.println();
+				System.out.println();
+
+				System.out.println("This session:");
+				System.out.println("------------ ");
+				System.out.println("There are " + UrlCard.getAllUrlsCount() + " Urls");
+				System.out.println("and " + CategoryCard.getAllCategoryCount() + " Categories");
+				System.out.println();
+				System.out.println("--> You have " + TodoCard.getAllTodosCount() + " active todo items!");
+
+				System.out.println();
+				System.out.println();
+			}
+
+				break;
+
+			case ManuallyAddBrowserSessionFile :			
+			{
+				System.out.println();
+				System.out.println();
+
+				System.out.println("*********************************************");
+				System.out.println("**   Manually add a Browser Session File   **");
+				System.out.println("*********************************************");
+
+				System.out.println();
+				System.out.println();
+
+				System.out.println("Prior to the load process: ");
+
+
+				System.out.println();
+				System.out.println("\t* Be sure the session file is in the proper directory (\'Bookmark_Workbench/Source_Code/\')");
+				System.out.println("\t* Be sure the session filename format is correct (ex. \'Session_201204281337.txt\')");
+				System.out.println("\t* Consult help and documentation for the proper session file format.");
+
+				System.out.println();
+				System.out.println();
+
+				System.out.println("If everything is in order... lets begin!");
+				System.out.println();
+			}
+
+				break;
+		}
+	}
+
+	public static boolean userChoice(MessageType message)
+	{
+		boolean userChoiceReturnValue = true;
+
+		switch(message)
+		{
+			case YesOrNo :			
+			{
+				System.out.println("\t[1] Yes.");
+				System.out.println("\t[2] No.");
+				System.out.println();
+				System.out.println();		
+
+				//do loop logic
+				Scanner scan = new Scanner(System.in);
+				boolean isEntryIncorrect, answer = true;
+
+				do {
+
+					int userOption = 0;
+
+					System.out.print("Please enter option 1 or 2: ");
+					userOption = scan.nextInt();
+					scan.nextLine(); //nextInt error correction
+					System.out.println();
+
+					if(userOption == 1)
+					{
+						isEntryIncorrect = false;
+						answer = true;
+					}
+					else if(userOption == 2)
+					{
+						isEntryIncorrect = false;
+						answer = false;
+					}
+					else
+						isEntryIncorrect = true;
+
+				} while(isEntryIncorrect);
+			
+				userChoiceReturnValue = answer;
+			}
+
+				break;
+		}
+
+		return userChoiceReturnValue;
+	}
+
+	public static void warningMessage(MessageType message)
+	{
+		switch(message)
+		{
+			case UsernameTaken :			
+			{
+				System.out.println("************************************************************************************");
+				System.out.println("**   !! The username you have selected is already in use, please try another !!   **");
+				System.out.println("************************************************************************************");
+				System.out.println();
+			}
+
+				break;
+
+			case ProblemParsingManifest :	
+			{
+				System.out.println("**********************************************************************************");
+				System.out.println("**   !! The manifest file may be corrupted, there was a problem parsing it !!   **");
+				System.out.println("**********************************************************************************");
+				System.out.println();
+			}
+
+				break;
+
+
+			case ProblemParsingSessionFile :	
+			{
+				System.out.println("*************************************************************************************************");
+				System.out.println("**   !! There was a problem parsing your session file, the manifest file may be corrupted !!   **");
+				System.out.println("*************************************************************************************************");
+				System.out.println();
+			}
+
+				break;
+		}
+	}
+
+	public static void neutralMessage(MessageType message)
+	{
+		switch(message)
+		{
+			case CompletedParsingManifest :		
+			{
+				System.out.println("********************************************");
+				System.out.println("**   %% The manifest has been loaded %%   **");
+				System.out.println("********************************************");
+				System.out.println();
+			}
+
+				break;
+
+			case CompletedParsingSessionFile :			
+			{
+				System.out.println("*************************************************");
+				System.out.println("**   %% Your session file has been loaded %%   **");
+				System.out.println("*************************************************");
+				System.out.println();
+			}
+
+				break;
+		}
+	}
+
+}//end UiCli class

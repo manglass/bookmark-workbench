@@ -1,0 +1,106 @@
+/*****************************************************************************************
+'PMX': Poor Man's Extensible Markup Language
+
+"A childish hack, but a good learning exercise."
+*****************************************************************************************/
+
+Motives 
+------- 
+
+XML [1] is widely accepted and has full Java libraries dedicated to it.
+
+	> Why did I not use XML?
+
+		For the sake of this project I thought it might be an interesting undertaking to attempt to reverse engineer the simplest mechanisms of XML's encoding/decoding behaviors and use my own homebrewed markup, Scanner/String methods and regular expressions.
+
+		*** The program's design is hopefully modular enough to allow for a very simple switch between saving/parsing/etc in PMX, XML, or any other markup users/programmers would prefer to use.
+
+			--> Simply update the Parser.java implementation of the 'readLine()' method.  The other, more specific parser files will inherit this change.	
+
+
+
+				[1] (see: http://en.wikipedia.org/wiki/XML)
+
+
+
+***********************
+PMX Parser Design Notes
+***********************
+
+
+Rules:
+-----
+
+1. The parser will step through lists of 'URLs' within a 'Session File'.  
+2. The 'Session File' may begin with a 'Title' or a 'Space'.
+3. The 'URL' will begin with a 'Title'.
+4. If there are 2 'Spaces' in a row (or a 'Space' then 'EoF') the 'Session File' is complete and the parser should end.
+
+
+	Delimiters ('markup tags'):
+
+
+		[[Type]]   [[/Type]]
+		--------   ---------
+		|		   |
+		|		   |
+		Open tag   |
+				   Close tag
+
+
+
+Example:
+-------
+
+	This is a typical 'URL', in any given 'Session File' there will be >= 1 of these. 
+
+'Space'    -->
+'Title'    -->	user stories - Google Search
+'URL'      -->	https://www.google.com/search?sourceid=chrome&ie=UTF-8&q=user+stories
+'Category' -->	[[Category]]software development, design, programming[[/Category]]
+'ToDos'    -->	[[ToDo]]*Find books on user stories, *Find on youtube[[/ToDo]]
+'Notes'    -->	[[Notes]]I read about these in a blog article.[[/Notes]]
+
+
+
+
+Psuedocode Logic:
+----------------
+
+
+	::This is deprecated::
+
+
+Parser opens file with list of 'URLs'. [Main loop opens 'Session File loop']
+
+	
+
+		Call to ReadLine
+
+	    ----------Single URL Object begins----------
+
+	    Set isUrlObjectComplete = false
+
+	    while (isUrlObjectComplete == false)
+
+		Readline [either blank space or text] //depends on the newline or linebreak in my files!?
+			if text
+				if no http and no [[?]] 
+					-- it is a title, parse it like one 
+					--> until linebreak 
+					--> call ReadLine
+				if http 
+					-- it is a url, parse it like one 
+					--> until linebreak 
+					--> call ReadLine
+				if [[?]] -- it is an attribute, parse it like one
+					if ? == Category -- it is a category attr, parse it like one --> until [[/?]]
+					if ? == ToDo -- it is a todo attr, parse it like one --> until [[/?]]
+					if ? == Notes -- it is a notes attr, parse it like one --> until [[/?]]
+
+			if blank space
+				move to next line
+					if blank space (or 'file end?')
+						the file is complete -- end the readline
+					if text
+						call Readline again
