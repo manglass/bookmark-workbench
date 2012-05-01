@@ -65,6 +65,45 @@ class UiCli extends Ui
 			}
 
 				break;
+
+			case EndingCredits :
+			{
+				System.out.println();
+				System.out.println();		
+
+				System.out.println();
+				System.out.println("\t   ****************************************************************************");
+				System.out.println("\t *******                                                           	  *******");
+				System.out.println("\t******   Thanks for using Bookmark Workbench, your URLs are safe with us!   ******");
+				System.out.println("\t *******	                                                          *******");
+				System.out.println("\t   ****************************************************************************");
+
+				System.out.println();
+				System.out.println();
+
+				System.out.println("\t\t\t                          Gee, Thanks 	");
+		        System.out.println("\t\t\t                            | 			");                    
+				System.out.println("\t\t\t                           |  			");
+				System.out.println("\t\t\t           /\\       /\\   |   			");
+				System.out.println("\t\t\t            <O>   <O>         			");
+				System.out.println("\t\t\t          ==    =    ==       			");
+				System.out.println("\t\t\t          ==    ^    ==       			");
+				System.out.println("\t\t\t              ---*-           			");
+				System.out.println("\t\t\t              000000    888888			");
+				System.out.println("\t\t\t             00000000   8   88			");
+				System.out.println("\t\t\t             00000000       88			");		
+		        System.out.println("\t\t\t             00!!000000     88			");
+		        System.out.println("\t\t\t             !!00!!000000   88			");
+		        System.out.println("\t\t\t             !!00!!0000000  88			");    
+		        System.out.println("\t\t\t             !!00!!0000000  88			");
+				System.out.println("\t\t\t             oo  oo 000000 88 			");
+				System.out.println("\t\t\t            ,,o ,,o 00000088  			");
+				System.out.println("\t\t\t                              			");
+
+				System.out.println();				
+			}
+
+				break;
 		}
 	}
 
