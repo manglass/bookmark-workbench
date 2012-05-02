@@ -95,8 +95,13 @@ public class Parser
   		{
   			f.createNewFile();
   			System.out.println();//eee+
-		    System.out.println("*Parser----created new file");//eee+
+		    System.out.println("*Parser----created new file: " + fileName);//eee+
   		}
+  		else//eee+
+  		{//eee+
+   			System.out.println();//eee+
+		    System.out.println("*Parser---- " + fileName + " already exists.");//eee+	
+  		}//eee+
 
   		try {
 

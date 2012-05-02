@@ -1,4 +1,4 @@
-bra/*****************************************************************************************
+/*****************************************************************************************
 SessionParser.java
 
 	1. [loads] a user "Session File" 
@@ -106,7 +106,7 @@ public class SessionParser extends Parser
 				case BlankLine: 	{
 										add("", BookmarkWorkbench.mainManifest);
 										System.out.println();//eee+
-										System.out.println("SessionParser----Update: BlankLine");//eee+
+										System.out.println("SessionParser----Update to " + mainManifest + " : BlankLine");//eee+
 										isUrlObjectComplete = true;
 									}
 										break;
