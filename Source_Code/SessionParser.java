@@ -1,4 +1,4 @@
-/*****************************************************************************************
+bra/*****************************************************************************************
 SessionParser.java
 
 	1. [loads] a user "Session File" 
@@ -76,8 +76,13 @@ public class SessionParser extends Parser
 
 	public static void initialize(String fileName) throws IOException
 	{
+		System.out.println("Manifest parser is resetting."); //eee+
+		System.out.println(); //eee+
 		ManifestParser.reset();
-		add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
+		System.out.println("One line will be added to the mainManifest file."); //eee+
+		System.out.println(); //eee+
+		add("SessionParser", BookmarkWorkbench.mainManifest); //eee-(1)->
+		//eee-(1)-> add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
 		load(fileName);
 		scrap();
 		ManifestParser.initialize(BookmarkWorkbench.mainManifest); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
