@@ -106,7 +106,7 @@ public class SessionParser extends Parser
 				case BlankLine: 	{
 										add("", BookmarkWorkbench.mainManifest);
 										System.out.println();//eee+
-										System.out.println("SessionParser----Update to " + mainManifest + " : BlankLine");//eee+
+										System.out.println("SessionParser----Update to " + BookmarkWorkbench.mainManifest + " : BlankLine");//eee+
 										isUrlObjectComplete = true;
 									}
 										break;

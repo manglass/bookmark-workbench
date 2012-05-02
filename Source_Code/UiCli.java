@@ -18,7 +18,9 @@ class UiCli extends Ui
 {
 	public void viewUrlCard()
 	{
-
+		//user 
+		//search for card (insertion sort?)
+		//
 	}
 
 	public void viewUrlList()

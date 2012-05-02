@@ -28,6 +28,10 @@ class UrlCard implements Card
 		notes = new ArrayList<String>();
 
 		allUrlsCount++;
+
+		System.out.println("UrlCard-----just created an object, there are now : " + allUrlsCount); //eee+
+		System.out.println(); //eee+
+
 	}
 
 	public void setUrl(String url)
@@ -93,13 +97,6 @@ class UrlCard implements Card
 	public String prettyPrint()
 	{
 		return "\n|  " + title + "\n|  \n|  " + url;
-	}
-
-	public void viewCard()
-	{
-		//user 
-		//search for card (insertion sort?)
-		//
 	}
 
 	public static void serialize(String fileName)
@@ -178,6 +175,8 @@ class UrlCard implements Card
 	public static void initialize()
 	{
 		allUrls = new ArrayList<UrlCard>();
+		System.out.println("UrlCard-----initialized main array of : " + allUrls.size()); //eee+
+		System.out.println(); //eee+
 	}
 
 	public static int getAllUrlsCount()
