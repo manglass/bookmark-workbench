@@ -12,6 +12,7 @@ These are used in CLI views.
 *****************************************************************************************/
 
 import java.util.*;
+import java.io.*;
 
 class UiCli extends Ui
 {
@@ -32,7 +33,31 @@ class UiCli extends Ui
 
 	public void viewCategoryList()
 	{
+		System.out.println();
+		System.out.println("*****************");
+		System.out.println("** Categories: **");
+		System.out.println("*****************");
+		System.out.println();
 
+		try {
+
+				Scanner fileScan = new Scanner(new File(BookmarkWorkbench.categoryManifest));
+	
+	
+				while (fileScan.hasNext())
+		  		{
+		  			String category = fileScan.nextLine();
+
+		  			System.out.println();
+		  			System.out.println(category);
+		  			for(int i=0; i<category.length(); i++)
+		  			{
+		  				System.out.print("-");
+		  			}
+		  			System.out.println();
+		  		}	
+		  		
+		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}	
 	}
 
 	public void viewToDoList()

@@ -177,7 +177,7 @@ class UrlCard implements Card
 
 	public static void initialize()
 	{
-		UrlCard.allUrls = new ArrayList<UrlCard>();
+		allUrls = new ArrayList<UrlCard>();
 	}
 
 	public static int getAllUrlsCount()
@@ -201,6 +201,8 @@ class UrlCard implements Card
 
 	public static void main(String[] args)
 	{
+		ArrayList<UrlCard> array;
+		array = UrlCard.getAllUrls();
 
 	}
 }

@@ -167,6 +167,9 @@ public class Parser
 		mainMenu(name);
 		System.out.println("END: mainMenu(); ------------------------");
 		*/
+
+		load("Test.txt");
+
 	}
 
 }

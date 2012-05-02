@@ -54,7 +54,7 @@ class CategoryCard implements Card
 
 	public static void initialize()
 	{
-		CategoryCard.allCategory = new ArrayList<CategoryCard>();
+		allCategory = new ArrayList<CategoryCard>();
 	}
 
 	public static int getAllCategoryCount()

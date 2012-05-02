@@ -269,7 +269,7 @@ public class UserPrompt
 				{
 					case 1:  SessionParser.get();
 							 break;
-					case 2:  System.out.println("category.listAll()");
+					case 2:  userInterface.viewCategoryList();
 							 break;
 					case 3:  System.out.println("url.listAll()");
 							 break;

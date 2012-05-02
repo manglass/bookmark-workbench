@@ -127,9 +127,13 @@ public class ManifestParser extends Parser
 
 	public static void main(String[] args) throws IOException
 	{
+		/*
 		System.out.println("RUNNING: loadManifest(); ------------------------");
 		String testManifest = "testUser_main_manifest.txt"; 
 		load(testManifest);		
 		System.out.println("END: loadManifest(); ------------------------");
+		*/
+
+		
 	}
 }

@@ -96,7 +96,7 @@ class TodoCard implements Card
 
 	public static void initialize()
 	{
-		TodoCard.allTodoLists = new ArrayList<TodoCard>();
+		allTodoLists = new ArrayList<TodoCard>();
 	}
 
 	public static int getAllTodosCount()
