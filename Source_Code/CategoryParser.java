@@ -19,11 +19,12 @@ class CategoryParser extends Parser
 	public static void initialize(String fileName) throws IOException
 	{
 		CategoryCard.initialize();
-		load(fileName);
+		Parser category = new CategoryParser();
+		category.load(fileName);
 		//UiCli.neutralMessage(MessageType.CompletedParsingCategoryManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public static void load(String fileName) throws IOException
+	public void load(String fileName) throws IOException
 	{
 		//overwrites Parser.load() implementation: doesnt iterate, just preps file
 
@@ -36,7 +37,7 @@ class CategoryParser extends Parser
   		}
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
 		Scanner lineScan;
 		

@@ -40,7 +40,7 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)	
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
@@ -86,7 +86,7 @@ public class Parser
   		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}			
 	}
 
-	public static void load(String fileName) throws IOException
+	public void load(String fileName) throws IOException
 	{
 		File f;
   		f = new File(fileName);
@@ -104,7 +104,7 @@ public class Parser
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}
 	}
 
-	protected static void iterate(Scanner fileScan)
+	protected void iterate(Scanner fileScan)
 	{
   		while (fileScan.hasNext())
   		{
@@ -167,8 +167,8 @@ public class Parser
 		mainMenu(name);
 		System.out.println("END: mainMenu(); ------------------------");
 		*/
-
-		load("Test.txt");
+		Parser parser = new Parser();
+		parser.load("Test.txt");
 
 	}
 

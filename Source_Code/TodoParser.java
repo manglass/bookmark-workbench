@@ -18,12 +18,14 @@ class TodoParser extends Parser
 {
 	public static void initialize(String fileName) throws IOException
 	{
+		Parser todo = new TodoParser();
+
 		TodoCard.initialize();
-		load(fileName);
+		todo.load(fileName);
 		//UiCli.neutralMessage(MessageType.CompletedParsingTodoManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public static void load(String fileName) throws IOException
+	public void load(String fileName) throws IOException
 	{
 		//overwrites Parser.load() implementation: doesnt iterate, just preps file
 

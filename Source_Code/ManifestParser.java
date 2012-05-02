@@ -26,6 +26,8 @@ public class ManifestParser extends Parser
 {
 	public static void initialize(String userName) throws IOException
 	{
+		Parser manifest = new ManifestParser();
+
 		//(new user)       if it doesnt exist  --> creates blank manifest
 		//(returning user) if it does exist	   --> loads all '* Objects' into working memory
 		
@@ -37,7 +39,7 @@ public class ManifestParser extends Parser
 		UrlCard.initialize();
 
 		BookmarkWorkbench.mainManifest = userName + "_main_manifest.txt";
-		load(BookmarkWorkbench.mainManifest);
+		manifest.load(BookmarkWorkbench.mainManifest);
 
 		//UiCli.neutralMessage(MessageType.CompletedParsingManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 		
@@ -45,7 +47,7 @@ public class ManifestParser extends Parser
 		TodoParser.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan)
+	public void update(String line, LineStatus status, Scanner fileScan)
 	{
 		ArrayList<UrlCard> allUrls = UrlCard.getAllUrls();
 		boolean isUrlObjectComplete = false;
@@ -79,7 +81,8 @@ public class ManifestParser extends Parser
 										int i = allUrls.size() - 1;
 										UrlCard url = allUrls.get(i);
 										url.setCategory(CategoryParser.clean(line));
-										CategoryParser.update(line, status, fileScan);
+										Parser category = new CategoryParser();
+										category.update(line, status, fileScan);
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}

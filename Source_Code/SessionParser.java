@@ -76,15 +76,17 @@ public class SessionParser extends Parser
 
 	public static void initialize(String fileName) throws IOException
 	{
+		Parser session = new SessionParser();
+
 		ManifestParser.reset();
 		add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
-		load(fileName);
+		session.load(fileName);
 		scrap();
 		ManifestParser.initialize(BookmarkWorkbench.mainManifest.replace("_main_manifest.txt", "")); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
 		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
 		boolean isUrlObjectComplete = false;
 
