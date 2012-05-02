@@ -250,7 +250,8 @@ public class UserPrompt
 
 	private static void bootstrap() throws IOException
 	{
-		UserParser.load("user_manifest.txt");
+		Parser user = new UserParser();
+		user.load("user_manifest.txt");
 	}
 
 	public static void mainMenu(String user) throws IOException

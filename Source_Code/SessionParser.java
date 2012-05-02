@@ -76,6 +76,8 @@ public class SessionParser extends Parser
 
 	public static void initialize(String fileName) throws IOException
 	{
+		Parser session = new SessionParser();
+
 		System.out.println("SessionParser-----Manifest parser is resetting."); //eee+
 		System.out.println(); //eee+
 		ManifestParser.reset();
@@ -85,7 +87,7 @@ public class SessionParser extends Parser
 		//eee-(1)-> add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
 		System.out.println();//eee+
 		System.out.println("SessionParser----calls load");//eee+		
-		load(fileName);
+		session.load(fileName);
 		System.out.println();//eee+
 		System.out.println("SessionParser----calls scrap");//eee+
 		scrap();
@@ -95,7 +97,7 @@ public class SessionParser extends Parser
 		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
 		System.out.println();//eee+
 		System.out.println("SessionParser----begin update with: " + line + "of type: " + status.toString());//eee+
