@@ -80,7 +80,7 @@ public class SessionParser extends Parser
 		add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
 		load(fileName);
 		scrap();
-		ManifestParser.initialize(BookmarkWorkbench.mainManifest); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
+		ManifestParser.initialize(BookmarkWorkbench.mainManifest.replace("_main_manifest.txt", "")); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
 		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
