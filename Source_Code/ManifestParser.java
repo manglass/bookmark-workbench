@@ -31,12 +31,18 @@ public class ManifestParser extends Parser
 		
 		BookmarkWorkbench.categoryManifest = userName + "_category_manifest.txt";
 		CategoryParser.initialize(BookmarkWorkbench.categoryManifest);
+		System.out.println();//eee+
+		System.out.println("ManifestParser----init category parser");//eee+
 		BookmarkWorkbench.todoManifest = userName + "_todo_manifest.txt";
 		TodoParser.initialize(BookmarkWorkbench.todoManifest);
+		System.out.println();//eee+
+		System.out.println("ManifestParser----init todo parser");//eee+
 
 		UrlCard.initialize();
 
 		BookmarkWorkbench.mainManifest = userName + "_main_manifest.txt";
+		System.out.println();//eee+
+		System.out.println("ManifestParser----load main manifest");//eee+
 		load(BookmarkWorkbench.mainManifest);
 
 		//UiCli.neutralMessage(MessageType.CompletedParsingManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
@@ -47,7 +53,11 @@ public class ManifestParser extends Parser
 
 	public static void update(String line, LineStatus status, Scanner fileScan)
 	{
+		System.out.println();//eee+
+		System.out.println("ManifestParser----now in update");//eee+
 		ArrayList<UrlCard> allUrls = UrlCard.getAllUrls();
+		System.out.println();//eee+
+		System.out.println("ManifestParser----creates array for use, array is: " + allUrls.size());//eee+
 		boolean isUrlObjectComplete = false;
 
 		do {
@@ -56,11 +66,15 @@ public class ManifestParser extends Parser
 			{
 				case BlankLine: 	{
 										isUrlObjectComplete = true;
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- BLANKLINE");//eee+
 									}
 										break;
 
 				case TitleLine: 	{
 										allUrls.add(new UrlCard(line)); //invokes new object (should it be 'invoke' method)
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- TITLELINE: " + line + "in obj: " + allUrls.get(allUrls.size() - 1));//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -70,6 +84,8 @@ public class ManifestParser extends Parser
 										int i = allUrls.size() - 1;
 										UrlCard url = allUrls.get(i);
 										url.setUrl(line);
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- URLLINE: " + line + "in obj: " + url);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -80,6 +96,8 @@ public class ManifestParser extends Parser
 										UrlCard url = allUrls.get(i);
 										url.setCategory(CategoryParser.clean(line));
 										CategoryParser.update(line, status, fileScan);
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- CATEGORYLINE: " + line + "in obj: " + url);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -89,6 +107,8 @@ public class ManifestParser extends Parser
 										int i = allUrls.size() - 1;
 										UrlCard url = allUrls.get(i);
 										url.setTodo(TodoParser.clean(line));
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- TODOLINE: " + TodoParser.clean(line) + "in obj: " + url);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -98,6 +118,8 @@ public class ManifestParser extends Parser
 										int i = allUrls.size() - 1;
 										UrlCard url = allUrls.get(i);
 										url.setNotes(NoteParser.clean(line));
+										System.out.println();//eee+
+										System.out.println("ManifestParser----update -- NOTELINE: " + NoteParser.clean(line) + "in obj: " + url);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -111,7 +133,8 @@ public class ManifestParser extends Parser
 			}
 
 		} while(isUrlObjectComplete==false);
-
+										System.out.println();//eee+
+										System.out.println("ManifestParser-----UrlObject Complete!");//eee+
 		//--> concider adding variable here to feed a progress bar or increment to show how many have been entered into main memory
 	}
 

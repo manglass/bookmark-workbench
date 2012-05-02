@@ -40,7 +40,7 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)	
 	}
 
-	public static void update(String line, LineStatus status, Scanner fileScan) 
+	public static void update(String line, LineStatus status, Scanner fileScan); 
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
@@ -124,7 +124,7 @@ public class Parser
 			System.out.println("----line: " + line);//eee+
   			LineStatus	lineStatus = readLine(line);
   			System.out.println();//eee+
-			System.out.println("*Parser----line gets sent to update");//eee+
+			System.out.println("*Parser----line gets sent to update with status: " + lineStatus.toString());//eee+
   			update(line, lineStatus, fileScan);
   		}		
 	}

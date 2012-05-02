@@ -97,6 +97,8 @@ public class SessionParser extends Parser
 
 	public static void update(String line, LineStatus status, Scanner fileScan) 
 	{
+		System.out.println();//eee+
+		System.out.println("SessionParser----begin update with: " + line + "of type: " + status.toString());//eee+
 		boolean isUrlObjectComplete = false;
 
 		do {
