@@ -13,7 +13,7 @@ import java.util.*;
 
 class CategoryCard implements Card
 {
-	public static ArrayList<CategoryCard> allCategory;
+	private static ArrayList<CategoryCard> allCategory; //create add interface
 	private static int allCategoryCount = 0;
 
 	private String title;
@@ -60,6 +60,16 @@ class CategoryCard implements Card
 	public static int getAllCategoryCount()
 	{
 		return allCategoryCount;
+	}
+
+	public static ArrayList<CategoryCard> getAllCategory()
+	{
+		return allCategory;
+	}
+
+	public static void clearOut()
+	{
+		allCategory.clear();
 	}
 
 	//-------------------------------------------------------------------------------

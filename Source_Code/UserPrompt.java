@@ -24,7 +24,8 @@ import java.util.regex.*;
 
 public class UserPrompt
 {
-	static int menuCount = 0;
+	private static int menuCount = 0;
+	private static Ui userInterface = new UiCli(); //this can be changed to UiGui provide true GUI
 
 	public static String welcome() throws IOException
 	{
@@ -178,7 +179,7 @@ public class UserPrompt
 			//scan user_manifest for selected username
 			try {
 
-				Scanner fileScan = new Scanner(new File("user_manifest.txt"));
+				Scanner fileScan = new Scanner(new File(BookmarkWorkbench.userManifest));
 				String activatedUser;
 
 			
@@ -288,7 +289,10 @@ public class UserPrompt
 							 break;
 					case 11: help();
 							 break;							 							 					 													
-					case 12: userExit = true;
+					case 12: {
+								userExit = true;
+							 	ManifestParser.reset();
+							 }
 							 break;
 					default: isEntryIncorrect = true;
 							 break;
@@ -298,7 +302,7 @@ public class UserPrompt
 
 		} while(!userExit);	
 
-		UiCli.boilerPlate(MessageType.EndingCredits);
+		userInterface.boilerPlate(MessageType.EndingCredits);
 	}
 
 	private static int sessionBoilerplate(String user)
@@ -325,7 +329,7 @@ public class UserPrompt
  		System.out.println();
  		System.out.println(); 		
 
- 		UiCli.boilerPlate(MessageType.ListNumberOfCategoriesUrlsandToDos);
+ 		userInterface.boilerPlate(MessageType.ListNumberOfCategoriesUrlsandToDos);
 
  		System.out.println();
  		System.out.println(); 

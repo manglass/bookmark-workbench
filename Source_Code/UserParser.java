@@ -22,6 +22,7 @@ public class UserParser extends Parser
 		
 			Scanner fileScan = new Scanner(new File(userManifest));
 			String activatedUser;
+			Ui userInterface = new UiCli(); //decouple this from model (observer pattern?)
 
 			while (fileScan.hasNext())
 			{
@@ -29,7 +30,7 @@ public class UserParser extends Parser
 				if(activatedUser.equals(userName))
 				{
 					isUserNameTaken = true;
-					UiCli.warningMessage(MessageType.UsernameTaken);
+					userInterface.warningMessage(MessageType.UsernameTaken); //decouple this from model (observer pattern?)
 					break;
 				}
 			}

@@ -15,7 +15,32 @@ import java.util.*;
 
 class UiCli extends Ui
 {
-	public static void boilerPlate(MessageType message)
+	public void viewUrlCard()
+	{
+
+	}
+
+	public void viewUrlList()
+	{
+
+	}
+
+	public void viewCategoryCard()
+	{
+
+	}
+
+	public void viewCategoryList()
+	{
+
+	}
+
+	public void viewToDoList()
+	{
+
+	}
+
+	public void boilerPlate(MessageType message)
 	{
 		switch(message)
 		{
@@ -107,7 +132,7 @@ class UiCli extends Ui
 		}
 	}
 
-	public static boolean userChoice(MessageType message)
+	public boolean userChoice(MessageType message)
 	{
 		boolean userChoiceReturnValue = true;
 
@@ -157,7 +182,7 @@ class UiCli extends Ui
 		return userChoiceReturnValue;
 	}
 
-	public static void warningMessage(MessageType message)
+	public void warningMessage(MessageType message)
 	{
 		switch(message)
 		{
@@ -194,7 +219,7 @@ class UiCli extends Ui
 		}
 	}
 
-	public static void neutralMessage(MessageType message)
+	public void neutralMessage(MessageType message)
 	{
 		switch(message)
 		{

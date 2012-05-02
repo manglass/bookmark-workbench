@@ -23,7 +23,8 @@ public class SessionParser extends Parser
 	{
 		Scanner scan = new Scanner(System.in);
 
-		UiCli.boilerPlate(MessageType.ManuallyAddBrowserSessionFile);
+		Ui userInterface = new UiCli(); //decouple this from model (observer pattern?)
+		userInterface.boilerPlate(MessageType.ManuallyAddBrowserSessionFile); //decouple this from model (observer pattern?)
 
 		//do loop logic
 		boolean isFilenameCorrect = false;
@@ -66,7 +67,7 @@ public class SessionParser extends Parser
 			System.out.println("There are " + urlCount + " urls in " + fileName + ", are you sure this is the correct file?");
 			System.out.println();
 
-			isFilenameCorrect = UiCli.userChoice(MessageType.YesOrNo);			
+			isFilenameCorrect = userInterface.userChoice(MessageType.YesOrNo);	//decouple this from model (observer pattern?)		
 
 		} while(isFilenameCorrect==false);		
 
@@ -75,6 +76,7 @@ public class SessionParser extends Parser
 
 	public static void initialize(String fileName) throws IOException
 	{
+		ManifestParser.reset();
 		add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
 		load(fileName);
 		scrap();
@@ -132,7 +134,8 @@ public class SessionParser extends Parser
 										break;		
 
 				case OtherLine: 	{
-										UiCli.warningMessage(MessageType.ProblemParsingSessionFile);
+										Ui userInterface = new UiCli(); //decouple this from model (observer pattern?)
+										userInterface.warningMessage(MessageType.ProblemParsingSessionFile); //decouple this from model (observer pattern?)
 									}
 										break;
 			}
@@ -146,9 +149,9 @@ public class SessionParser extends Parser
 	{
 		//wipe active objects from program memory
 
-		UrlCard.allUrls.clear();
-		CategoryCard.allCategory.clear();
-		TodoCard.allTodoLists.clear();
+		UrlCard.clearOut();
+		CategoryCard.clearOut();
+		TodoCard.clearOut();
 	}
 
 

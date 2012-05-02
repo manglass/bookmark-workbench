@@ -96,12 +96,22 @@ class TodoCard implements Card
 
 	public static void initialize()
 	{
-		UrlCard.allUrls = new ArrayList<UrlCard>();
+		TodoCard.allTodoLists = new ArrayList<TodoCard>();
 	}
 
 	public static int getAllTodosCount()
 	{
 		return allTodosCount;
+	}
+
+	public static ArrayList<TodoCard> getAllTodoLists()
+	{
+		return allTodoLists;
+	}
+
+	public static void clearOut()
+	{
+		allTodoLists.clear();
 	}
 
 	//-------------------------------------------------------------------------------

@@ -12,5 +12,48 @@ This family of classes supplies the views and partial graphic elements for the p
 
 class Ui
 {
-	
+	public void viewUrlCard()
+	{
+
+	}
+
+	public void viewUrlList()
+	{
+
+	}
+
+	public void viewCategoryCard()
+	{
+
+	}
+
+	public void viewCategoryList()
+	{
+
+	}
+
+	public void viewToDoList()
+	{
+
+	}
+
+	public void boilerPlate(MessageType message)
+	{
+
+	}
+
+	public boolean userChoice(MessageType message)
+	{
+		return true; //dummy return value
+	}
+
+	public void warningMessage(MessageType message)
+	{
+
+	}
+
+	public void neutralMessage(MessageType message)
+	{
+
+	}
 }

@@ -1,9 +1,9 @@
 /*****************************************************************************************
 Card.java
 
-This is an interface to supply 'Card'-type classes with particular helper methods.  
+This is an interface to supply 'Card'-type classes with particular shared behavior.  
 
-Known Interface to: CategoryCard and UrlCard
+Known Interface to: CategoryCard, UrlCard and TodoCard
 
 	Methods:
 		
@@ -12,6 +12,5 @@ Known Interface to: CategoryCard and UrlCard
 
 interface Card
 {
-	//public void viewCard();
 
 }

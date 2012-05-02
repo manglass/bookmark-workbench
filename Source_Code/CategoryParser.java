@@ -95,7 +95,8 @@ class CategoryParser extends Parser
 
 	private static void invoke(String title)
 	{
-		CategoryCard.allCategory.add(new CategoryCard(title));
+		ArrayList<CategoryCard> categoryArray = CategoryCard.getAllCategory();
+		categoryArray.add(new CategoryCard(title));
 	}
 
 	public static void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)

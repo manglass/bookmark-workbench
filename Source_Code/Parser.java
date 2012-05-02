@@ -56,6 +56,23 @@ public class Parser
 		return null; //dummy return value
 	}
 
+	public static void reset()
+	{
+		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
+	}
+
+	public static void wipe(String fileName)
+	{
+  		try {
+
+	  		FileWriter fstream = new FileWriter(fileName,false);
+	  		BufferedWriter out = new BufferedWriter(fstream);
+	  		out.write("");
+	  		out.close();
+
+  		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}	
+	}
+
 	public static void add(String arg, String fileName) 
 	{
 		//append successful lines to the '*_manifest'

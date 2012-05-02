@@ -41,12 +41,13 @@ public class ManifestParser extends Parser
 
 		//UiCli.neutralMessage(MessageType.CompletedParsingManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 		
-		CategoryParser.associate(UrlCard.allUrls, CategoryCard.allCategory);
-		TodoParser.associate(UrlCard.allUrls, CategoryCard.allCategory);
+		CategoryParser.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
+		TodoParser.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 	}
 
 	public static void update(String line, LineStatus status, Scanner fileScan)
 	{
+		ArrayList<UrlCard> allUrls = UrlCard.getAllUrls();
 		boolean isUrlObjectComplete = false;
 
 		do {
@@ -59,15 +60,15 @@ public class ManifestParser extends Parser
 										break;
 
 				case TitleLine: 	{
-										UrlCard.allUrls.add(new UrlCard(line)); //invokes new object (should it be 'invoke' method)
+										allUrls.add(new UrlCard(line)); //invokes new object (should it be 'invoke' method)
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
 										break;
 
 				case UrlLine: 		{
-										int i = UrlCard.allUrls.size() - 1;
-										UrlCard url = UrlCard.allUrls.get(i);
+										int i = allUrls.size() - 1;
+										UrlCard url = allUrls.get(i);
 										url.setUrl(line);
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
@@ -75,8 +76,8 @@ public class ManifestParser extends Parser
 										break;
 
 				case CategoryLine: 	{
-										int i = UrlCard.allUrls.size() - 1;
-										UrlCard url = UrlCard.allUrls.get(i);
+										int i = allUrls.size() - 1;
+										UrlCard url = allUrls.get(i);
 										url.setCategory(CategoryParser.clean(line));
 										CategoryParser.update(line, status, fileScan);
 										iterate(fileScan);
@@ -85,8 +86,8 @@ public class ManifestParser extends Parser
 										break;
 
 				case TodoLine: 		{
-										int i = UrlCard.allUrls.size() - 1;
-										UrlCard url = UrlCard.allUrls.get(i);
+										int i = allUrls.size() - 1;
+										UrlCard url = allUrls.get(i);
 										url.setTodo(TodoParser.clean(line));
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
@@ -94,8 +95,8 @@ public class ManifestParser extends Parser
 										break;
 
 				case NoteLine: 		{
-										int i = UrlCard.allUrls.size() - 1;
-										UrlCard url = UrlCard.allUrls.get(i);
+										int i = allUrls.size() - 1;
+										UrlCard url = allUrls.get(i);
 										url.setNotes(NoteParser.clean(line));
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
@@ -103,7 +104,8 @@ public class ManifestParser extends Parser
 										break;		
 
 				case OtherLine: 	{
-										UiCli.warningMessage(MessageType.ProblemParsingManifest);
+										Ui userInterface = new UiCli();
+										userInterface.warningMessage(MessageType.ProblemParsingManifest);
 									}
 										break;
 			}
@@ -111,6 +113,12 @@ public class ManifestParser extends Parser
 		} while(isUrlObjectComplete==false);
 
 		//--> concider adding variable here to feed a progress bar or increment to show how many have been entered into main memory
+	}
+
+	public static void reset()
+	{
+		ManifestParser.wipe(BookmarkWorkbench.mainManifest);
+		UrlCard.serialize(BookmarkWorkbench.mainManifest);
 	}
 
 	//-------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ import java.util.*;
 
 class UrlCard implements Card
 {
-	public static ArrayList<UrlCard> allUrls;
+	private static ArrayList<UrlCard> allUrls; //create add interface
 	private static int allUrlsCount = 0;
 
 	private String title, url;
@@ -87,7 +87,92 @@ class UrlCard implements Card
 
 	public String toString()
 	{
-		return "Url :" + "/n" + title + "/n" + url;
+		return "Url :" + "\n" + title + "\n" + url;
+	}
+
+	public String prettyPrint()
+	{
+		return "\n|  " + title + "\n|  \n|  " + url;
+	}
+
+	public void viewCard()
+	{
+		//user 
+		//search for card (insertion sort?)
+		//
+	}
+
+	public static void serialize(String fileName)
+	{
+		for(int i = 0; i<allUrls.size(); i++)
+		{
+			UrlCard writeUrl = allUrls.get(i);
+			encodeTitle(writeUrl.title);
+			encodeUrl(writeUrl.url);
+			encodeCateogry(writeUrl.category);
+			encodeTodo(writeUrl.todo);
+			encodeNotes(writeUrl.notes);
+		}
+	}
+
+	private static void encodeTitle(String line)
+	{
+		ManifestParser.add("", BookmarkWorkbench.mainManifest);		
+		ManifestParser.add(line, BookmarkWorkbench.mainManifest);
+	}
+
+	private static void encodeUrl(String line)
+	{
+		ManifestParser.add(line, BookmarkWorkbench.mainManifest);
+	}
+
+	private static void encodeCateogry(ArrayList<String> array)
+	{
+		String categories = "[[Category]]";
+		
+		for(int i=0; i<array.size() - 1;i++)
+		{
+			String element = array.get(i).concat(", ");
+			categories = categories.concat(element);
+		}
+
+		categories = categories.concat(array.get(array.size() - 1));
+		categories = categories.concat("[[/Category]]");
+
+		ManifestParser.add(categories, BookmarkWorkbench.mainManifest);
+	}	
+
+	private static void encodeTodo(ArrayList<String> array)
+	{
+		String todos = "[[ToDo]]";
+		
+		for(int i=0; i<array.size() - 1;i++)
+		{	
+			String element = array.get(i);
+			element = element.replace("* ", "*");
+			element = element.concat(", ");
+			todos = todos.concat(element);
+		}
+
+		todos = todos.concat(array.get(array.size() - 1).replace("* ", "*"));
+		todos = todos.concat("[[/ToDo]]");
+
+		ManifestParser.add(todos, BookmarkWorkbench.mainManifest);		
+	}
+
+	private static void encodeNotes(ArrayList<String> array)
+	{
+		String notes = "[[Notes]]";
+		
+		for(int i=0; i<array.size();i++)
+		{
+			String element = array.get(i);
+			notes = notes.concat(element);
+		}
+
+		notes = notes.concat("[[/Notes]]");
+
+		ManifestParser.add(notes, BookmarkWorkbench.mainManifest);
 	}
 
 	public static void initialize()
@@ -98,6 +183,16 @@ class UrlCard implements Card
 	public static int getAllUrlsCount()
 	{
 		return allUrlsCount;
+	}
+
+	public static ArrayList<UrlCard> getAllUrls()
+	{
+		return allUrls;
+	}
+
+	public static void clearOut()
+	{
+		allUrls.clear();
 	}
 
 	//-------------------------------------------------------------------------------
