@@ -117,7 +117,11 @@ public class ManifestParser extends Parser
 
 	public static void reset()
 	{
+		System.out.println();//eee+
+		System.out.println("ManifestParser----wipe out the manifest");//eee+
 		ManifestParser.wipe(BookmarkWorkbench.mainManifest);
+		System.out.println();//eee+
+		System.out.println("ManifestParser----add all active objects to the manifest");//eee+		
 		UrlCard.serialize(BookmarkWorkbench.mainManifest);
 	}
 

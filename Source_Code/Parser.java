@@ -94,11 +94,15 @@ public class Parser
   		if (!f.exists())
   		{
   			f.createNewFile();
+  			System.out.println();//eee+
+		    System.out.println("*Parser----created new file");//eee+
   		}
 
   		try {
 
 				Scanner fileScan = new Scanner(new File(fileName));
+				System.out.println();//eee+
+				System.out.println("*Parser----calls iterate");//eee+
 				iterate(fileScan);
 
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}
@@ -108,8 +112,14 @@ public class Parser
 	{
   		while (fileScan.hasNext())
   		{
+  			System.out.println();//eee+
+			System.out.println("*Parser----iterate begins");//eee+
 			String 		line 	   = fileScan.nextLine();
+			System.out.println();//eee+
+			System.out.println("----line: " + line);//eee+
   			LineStatus	lineStatus = readLine(line);
+  			System.out.println();//eee+
+			System.out.println("*Parser----line gets sent to update");//eee+
   			update(line, lineStatus, fileScan);
   		}		
 	}

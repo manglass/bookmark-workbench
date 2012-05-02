@@ -76,15 +76,21 @@ public class SessionParser extends Parser
 
 	public static void initialize(String fileName) throws IOException
 	{
-		System.out.println("Manifest parser is resetting."); //eee+
+		System.out.println("SessionParser-----Manifest parser is resetting."); //eee+
 		System.out.println(); //eee+
 		ManifestParser.reset();
-		System.out.println("One line will be added to the mainManifest file."); //eee+
+		System.out.println("SessionParser-----One line will be added to the mainManifest file."); //eee+
 		System.out.println(); //eee+
-		add("SessionParser", BookmarkWorkbench.mainManifest); //eee-(1)->
+		add("SessionParser \'adds blank line\'", BookmarkWorkbench.mainManifest); //eee-(1)->
 		//eee-(1)-> add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
+		System.out.println();//eee+
+		System.out.println("SessionParser----calls load");//eee+		
 		load(fileName);
+		System.out.println();//eee+
+		System.out.println("SessionParser----calls scrap");//eee+
 		scrap();
+		System.out.println();//eee+
+		System.out.println("SessionParser----ManifestParser is initializing");//eee+
 		ManifestParser.initialize(BookmarkWorkbench.mainManifest); //triggers the manifest parser to refresh working memory(refactor this to trigger it on the manifest file instead of session file, but need some way to know what has and has not already been entered into working memory! --> like rails migrations by date)
 		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
@@ -99,12 +105,16 @@ public class SessionParser extends Parser
 			{
 				case BlankLine: 	{
 										add("", BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: BlankLine");//eee+
 										isUrlObjectComplete = true;
 									}
 										break;
 
 				case TitleLine: 	{
 										add(line, BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: " + line);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -112,6 +122,8 @@ public class SessionParser extends Parser
 
 				case UrlLine: 		{
 										add(line, BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: " + line);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -119,6 +131,8 @@ public class SessionParser extends Parser
 
 				case CategoryLine: 	{
 										add(line, BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: " + line);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -126,6 +140,8 @@ public class SessionParser extends Parser
 
 				case TodoLine: 		{
 										add(line, BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: " + line);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -133,6 +149,8 @@ public class SessionParser extends Parser
 
 				case NoteLine: 		{
 										add(line, BookmarkWorkbench.mainManifest);
+										System.out.println();//eee+
+										System.out.println("SessionParser----Update: " + line);//eee+
 										iterate(fileScan);
 										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
@@ -153,9 +171,14 @@ public class SessionParser extends Parser
 	private static void scrap()
 	{
 		//wipe active objects from program memory
-
+		System.out.println();//eee+
+		System.out.println("SessionParser----Scrap: UrlCards");//eee+
 		UrlCard.clearOut();
+		System.out.println();//eee+
+		System.out.println("SessionParser----Scrap: CategoryCard");//eee+
 		CategoryCard.clearOut();
+		System.out.println();//eee+
+		System.out.println("SessionParser----Scrap: TodoCard");//eee+
 		TodoCard.clearOut();
 	}
 
