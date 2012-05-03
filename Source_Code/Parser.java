@@ -23,10 +23,9 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
 
-	public void isPresent(String arg) 
+	public void isPresent(String arg) throws IOException
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
-		return true; //dummy return value
 	}
 
 	public static void get() throws IOException
@@ -34,12 +33,12 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)	
 	}
 
-	public void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) throws IOException
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
 
-	public void associate(ArrayList<Object> objs, ArrayList<Object> objs2)
+	public void associate(ArrayList<UrlCard> objs, ArrayList<CategoryCard> objs2)
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
@@ -100,7 +99,7 @@ public class Parser
 		return f;
 	}
 
-	protected void iterate(Scanner fileScan)
+	protected void iterate(Scanner fileScan) throws IOException
 	{
   		while (fileScan.hasNext())
   		{

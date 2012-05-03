@@ -50,7 +50,7 @@ public class ManifestParser extends Parser
 		todo.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 	}
 
-	public void update(String line, LineStatus status, Scanner fileScan)
+	public void update(String line, LineStatus status, Scanner fileScan) throws IOException
 	{
 		ArrayList<UrlCard> allUrls = UrlCard.getAllUrls();
 		boolean isUrlObjectComplete = false;
