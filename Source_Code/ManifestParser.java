@@ -131,6 +131,7 @@ public class ManifestParser extends Parser
 				case OtherLine: 	{
 										Ui userInterface = new UiCli();
 										userInterface.warningMessage(MessageType.ProblemParsingManifest);
+										isUrlObjectComplete = true; //'recursive base case' to eventually break out of loop
 									}
 										break;
 			}
