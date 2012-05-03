@@ -14,7 +14,7 @@ import java.util.*;
 class UrlCard implements Card
 {
 	private static ArrayList<UrlCard> allUrls; //create add interface
-	private static int allUrlsCount = allUrls.size();
+	private static int allUrlsCount = 0;
 
 	private String title, url;
 	private ArrayList<String> category, todo, notes;
@@ -26,6 +26,8 @@ class UrlCard implements Card
 		category = new ArrayList<String>();
 		todo = new ArrayList<String>();
 		notes = new ArrayList<String>();
+
+		allUrlsCount = allUrls.size();
 	}
 
 	public void setUrl(String url)
