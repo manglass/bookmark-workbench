@@ -27,7 +27,7 @@ class UrlCard implements Card
 		todo = new ArrayList<String>();
 		notes = new ArrayList<String>();
 
-		allUrlsCount = allUrls.size();
+		allUrlsCount = allUrls.size() + 1;
 	}
 
 	public void setUrl(String url)
@@ -129,14 +129,18 @@ class UrlCard implements Card
 	private static void encodeCateogry(ArrayList<String> array)
 	{
 		String categories = "[[Category]]";
-		
-		for(int i=0; i<array.size() - 1;i++)
-		{
-			String element = array.get(i).concat(", ");
-			categories = categories.concat(element);
-		}
 
-		categories = categories.concat(array.get(array.size() - 1));
+		if(array.size()>0)
+		{
+			for(int i=0; i<array.size() - 1;i++)
+			{
+				String element = array.get(i).concat(", ");
+				categories = categories.concat(element);
+			}
+
+			categories = categories.concat(array.get(array.size() - 1));
+		}
+		
 		categories = categories.concat("[[/Category]]");
 
 		ManifestParser.add(categories, BookmarkWorkbench.mainManifest);
@@ -145,16 +149,20 @@ class UrlCard implements Card
 	private static void encodeTodo(ArrayList<String> array)
 	{
 		String todos = "[[ToDo]]";
-		
-		for(int i=0; i<array.size() - 1;i++)
-		{	
-			String element = array.get(i);
-			element = element.replace("* ", "*");
-			element = element.concat(", ");
-			todos = todos.concat(element);
+
+		if(array.size()>0)
+		{		
+			for(int i=0; i<array.size() - 1;i++)
+				{	
+					String element = array.get(i);
+					element = element.replace("* ", "*");
+					element = element.concat(", ");
+					todos = todos.concat(element);
+				}
+	
+				todos = todos.concat(array.get(array.size() - 1).replace("* ", "*"));
 		}
 
-		todos = todos.concat(array.get(array.size() - 1).replace("* ", "*"));
 		todos = todos.concat("[[/ToDo]]");
 
 		ManifestParser.add(todos, BookmarkWorkbench.mainManifest);		
@@ -163,11 +171,14 @@ class UrlCard implements Card
 	private static void encodeNotes(ArrayList<String> array)
 	{
 		String notes = "[[Notes]]";
-		
-		for(int i=0; i<array.size();i++)
-		{
-			String element = array.get(i);
-			notes = notes.concat(element);
+
+		if(array.size()>0)
+		{	
+			for(int i=0; i<array.size();i++)
+			{
+				String element = array.get(i);
+				notes = notes.concat(element);
+			}
 		}
 
 		notes = notes.concat("[[/Notes]]");
