@@ -16,11 +16,9 @@ import java.io.*;
 
 class UiCli extends Ui
 {
-	public void viewUrlCard()
+	public void viewUrlCard(UrlCard url)
 	{
-		//user 
-		//search for card (insertion sort?)
-		//
+		System.out.println(url.prettyPrint()); //temp view, need to add ALL attributes and card-like structure.
 	}
 
 	public void viewUrlList()

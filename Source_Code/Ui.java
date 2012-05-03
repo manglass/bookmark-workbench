@@ -12,7 +12,7 @@ This family of classes supplies the views and partial graphic elements for the p
 
 class Ui
 {
-	public void viewUrlCard()
+	public void viewUrlCard(UrlCard url)
 	{
 
 	}

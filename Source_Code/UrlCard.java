@@ -13,7 +13,7 @@ import java.util.*;
 
 class UrlCard implements Card
 {
-	private static ArrayList<UrlCard> allUrls; //create add interface
+	private static ArrayList<UrlCard> allUrls; //create add interface to encapsulate away from destructive changes, but allow necessary changes
 	private static int allUrlsCount = 0;
 
 	private String title, url;
@@ -31,7 +31,11 @@ class UrlCard implements Card
 
 		System.out.println("UrlCard-----just created an object, there are now : " + allUrlsCount); //eee+
 		System.out.println(); //eee+
+	}
 
+	public String getTitle()
+	{
+		return title;
 	}
 
 	public void setUrl(String url)
