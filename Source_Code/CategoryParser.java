@@ -107,7 +107,7 @@ class CategoryParser extends Parser
 
 	public void isPresent(String arg) throws IOException
 	{
-		boolean isPresent = false;
+		boolean isPresent = false, alreadyObject = false;
 		Parser category = new CategoryParser();
 		File f = category.load(BookmarkWorkbench.categoryManifest);
 
@@ -126,7 +126,18 @@ class CategoryParser extends Parser
 
 		  		if(isPresent)
 		  		{
-		  			invoke(arg);
+		  			//make sure it is not already a CategoryCard object before making it one
+		  			ArrayList<CategoryCard> cards = CategoryCard.getAllCategory();
+
+					for (int i = 0; i<cards.size();i++)
+					{
+						String title = cards.get(i).getTitle();
+						if(title.equals(arg))
+							alreadyObject = true;
+					}
+
+					if(!alreadyObject)
+						invoke(arg);
 		  		}
 		  		else
 		  		{
