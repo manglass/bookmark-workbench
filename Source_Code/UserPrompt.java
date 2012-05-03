@@ -18,7 +18,7 @@ This is the class which houses all of the user interaction logic and boilerplate
 
 *****************************************************************************************/
 
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 import java.util.regex.*;
 
@@ -278,8 +278,22 @@ public class UserPrompt
 							 break;
 					case 5:  System.out.println("category.view()");
 							 break;
-					case 6:  System.out.println("url.view()");
-							 break;
+					//eee-(2)->case 6:  System.out.println("url.view()");
+					//		 break;
+					case 6:  {//eee+
+								Scanner scan = new Scanner(System.in);//eee+
+								Brainstorm_UrlCardSearch test = new Brainstorm_UrlCardSearch();//eee+
+//eee+
+								System.out.print("Enter your search: ");//eee+
+								String query = scan.nextLine();//eee+
+//eee+
+								ArrayList<Integer> search = test.urlSearch(query);//eee+
+								int urlIndex = test.urlResultSet(search);//eee+
+//eee+
+								userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+							 }//eee+
+							 break;//eee+
+//eee+
 					case 7:  System.out.println("category.viewRandom()");
 							 break;
 					case 8:  System.out.println("url.viewRandom()");
