@@ -24,7 +24,7 @@ class CategoryParser extends Parser
 		//UiCli.neutralMessage(MessageType.CompletedParsingCategoryManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public void load(String fileName) throws IOException
+	public File load(String fileName) throws IOException
 	{
 		//overwrites Parser.load() implementation: doesnt iterate, just preps file
 
@@ -35,10 +35,13 @@ class CategoryParser extends Parser
   		{
   			f.createNewFile();
   		}
+
+  		return f;
 	}
 
 	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
+		Parser category = new CategoryParser();
 		Scanner lineScan;
 		System.out.println();//eee+
 		System.out.println("CategoryParser----in update -- LINE: " + line + "is : " + status.toString());//eee+
@@ -56,25 +59,7 @@ class CategoryParser extends Parser
 			System.out.println();//eee+
 			System.out.println("CategoryParser---- line is scrubbed, now:" + word);//eee+
 
-			if(!isPresent(word, BookmarkWorkbench.categoryManifest))
-			{
-				System.out.println();//eee+
-		    	System.out.println("CategoryParser---- call add to category manifest.");//eee+
-				add(word, BookmarkWorkbench.categoryManifest);
-				System.out.println();//eee+
-				System.out.println("CategoryParser---- calls invoke");//eee+
-				invoke(word);
-				//initializes object with category name//load into working memory: categorycard array like manifest (at the end of all entries, searches for Urls to connect)
-			}
-			else
-			{
-				if(!isDouble(word, BookmarkWorkbench.categoryManifest))
-				{
-					System.out.println();//eee+
-					System.out.println("CategoryParser---- calls invoke on line already in the manifest.");//eee+
-					invoke(word);
-				}
-			}
+			category.isPresent(word);
 		}
 	}
 
@@ -110,7 +95,7 @@ class CategoryParser extends Parser
 		categoryArray.add(new CategoryCard(title));
 	}
 
-	public static void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)
+	public void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)
 	{
 		for (int url = 0; url < urlsList.size(); url++)
 		{
@@ -128,18 +113,36 @@ class CategoryParser extends Parser
 
 	}
 
-	public static boolean isPresent(String arg, String fileName)
+	public void isPresent(String arg)
 	{
-		//scans entire manifest to compare words
-		//.equals()
-		return true; //finish this
-	}
+		boolean isPresent = false;
+		Parser category = new CategoryParser();
+		File f = category.load(BookmarkWorkbench.categoryManifest);
 
-	public static boolean isDouble(String arg, String fileName)
-	{
-		//scans entire manifest to compare words
-		//sets up increment, if it is > 1 --> return true
-		return true; //finish this
+  		try {
+
+				Scanner fileScan = new Scanner(f);
+
+		  		while (fileScan.hasNext())
+		  		{
+		  			String line = fileScan.nextLine();
+		  			if(arg.equalsIgnoreCase(line))
+		  			{
+		  				isPresent = true;
+		  			}
+		  		}	
+
+		  		if(isPresent)
+		  		{
+		  			invoke(arg);
+		  		}
+		  		else
+		  		{
+					add(arg, BookmarkWorkbench.categoryManifest);
+					invoke(arg);		  					  			
+		  		}
+
+		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}			
 	}
 
 	//-------------------------------------------------------------------------------

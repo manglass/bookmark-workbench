@@ -23,10 +23,11 @@ class CategoryCard implements Card
 	{
 		this.title = title;
 		url = new ArrayList<UrlCard>();
+	
+		allCategoryCount = allCategory.size();
 
-		allCategoryCount++;
 		System.out.println();//eee+
-		System.out.println("CategoryCard---- new object created.");//eee+		
+		System.out.println("CategoryCard---- new object created.");//eee+	
 	}
 
 	public String getTitle()

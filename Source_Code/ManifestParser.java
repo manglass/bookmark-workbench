@@ -26,7 +26,10 @@ public class ManifestParser extends Parser
 {
 	public static void initialize(String userName) throws IOException
 	{
-		Parser manifest = new ManifestParser();
+		Parser manifest, category, todo;
+		manifest = new ManifestParser();
+		category = new CategoryParser();
+		todo = new TodoParser();
 
 		//(new user)       if it doesnt exist  --> creates blank manifest
 		//(returning user) if it does exist	   --> loads all '* Objects' into working memory
@@ -49,8 +52,8 @@ public class ManifestParser extends Parser
 
 		//UiCli.neutralMessage(MessageType.CompletedParsingManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 		
-		CategoryParser.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
-		TodoParser.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
+		category.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
+		todo.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 	}
 
 	public void update(String line, LineStatus status, Scanner fileScan)
