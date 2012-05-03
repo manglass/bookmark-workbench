@@ -132,26 +132,30 @@ class CategoryParser extends Parser
 		  			}
 		  		}	
 
-		  		if(isPresent)
-		  		{
-		  			//make sure it is not already a CategoryCard object before making it one
-		  			ArrayList<CategoryCard> cards = CategoryCard.getAllCategory();
+		  		//make sure it is not a blank category
+		  		if(!arg.equals(""))
+		  		{	
+			  		if(isPresent)
+			  		{
+			  			//make sure it is not already a CategoryCard object before making it one
+			  			ArrayList<CategoryCard> cards = CategoryCard.getAllCategory();
 
-					for (int i = 0; i<cards.size();i++)
-					{
-						String title = cards.get(i).getTitle();
-						if(title.equals(arg))
-							alreadyObject = true;
-					}
+						for (int i = 0; i<cards.size();i++)
+						{
+							String title = cards.get(i).getTitle();
+							if(title.equals(arg))
+								alreadyObject = true;
+						}
 
-					if(!alreadyObject)
-						invoke(arg);
-		  		}
-		  		else
-		  		{
-					add(arg, BookmarkWorkbench.categoryManifest);
-					invoke(arg);		  					  			
-		  		}
+						if(!alreadyObject)
+							invoke(arg);
+			  		}
+			  		else
+			  		{
+						add(arg, BookmarkWorkbench.categoryManifest);
+						invoke(arg);		  					  			
+			  		}
+			  	}	
 
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}			
 	}

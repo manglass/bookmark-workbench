@@ -63,7 +63,7 @@ public class ManifestParser extends Parser
 		System.out.println();//eee+
 		System.out.println("The system urls: ");//eee+			
 		ArrayList<UrlCard> e2Array = UrlCard.getAllUrls();//eee+
-		for (int e2 = 0; e<e2Array.size();e2++)//eee+
+		for (int e2 = 0; e2<e2Array.size();e2++)//eee+
 			System.out.println("" + e2 + ": " + e2Array.get(e2));//eee+
 
 	}
