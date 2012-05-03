@@ -54,6 +54,18 @@ public class ManifestParser extends Parser
 		
 		category.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 		todo.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
+
+		System.out.println();//eee+
+		System.out.println("The system categories: ");//eee+
+		ArrayList<CategoryCard> eArray = CategoryCard.getAllCategory();//eee+
+		for (int e = 0; e<eArray.size();e++)//eee+
+			System.out.println("" + e + ": " + eArray.get(e));//eee+
+		System.out.println();//eee+
+		System.out.println("The system urls: ");//eee+			
+		ArrayList<UrlCard> e2Array = UrlCard.getAllUrls();//eee+
+		for (int e2 = 0; e<e2Array.size();e2++)//eee+
+			System.out.println("" + e2 + ": " + e2Array.get(e2));//eee+
+
 	}
 
 	public void update(String line, LineStatus status, Scanner fileScan) throws IOException

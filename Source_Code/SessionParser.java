@@ -83,7 +83,7 @@ public class SessionParser extends Parser
 		ManifestParser.reset();
 		System.out.println("SessionParser-----One line will be added to the mainManifest file."); //eee+
 		System.out.println(); //eee+
-		add("SessionParser \'adds blank line\'", BookmarkWorkbench.mainManifest); //eee-(1)->
+		add("", BookmarkWorkbench.mainManifest); //eee-(1)->
 		//eee-(1)-> add("", BookmarkWorkbench.mainManifest); //lnbreak to offset user file which starts with 'TitleLine'
 		System.out.println();//eee+
 		System.out.println("SessionParser----calls load");//eee+		
