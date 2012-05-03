@@ -24,7 +24,7 @@ class CategoryCard implements Card
 		this.title = title;
 		url = new ArrayList<UrlCard>();
 
-		allCategoryCount++;
+		allCategoryCount = allCategory.size();
 	}
 
 	public String getTitle()

@@ -23,16 +23,10 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
 
-	public static boolean isPresent(String arg, String fileName) 
+	public void isPresent(String arg) 
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 		return true; //dummy return value
-	}
-
-	public static boolean isDouble(String arg, String fileName)
-	{
-		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
-		return true; //dummy return value	
 	}
 
 	public static void get() throws IOException
@@ -45,7 +39,7 @@ public class Parser
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
 
-	public static void associate(ArrayList<Object> objs, ArrayList<Object> objs2)
+	public void associate(ArrayList<Object> objs, ArrayList<Object> objs2)
 	{
 		//all calls to this method should be polymorphic/overridden (cant be abstract because it is called within this file)
 	}
@@ -86,7 +80,7 @@ public class Parser
   		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}			
 	}
 
-	public void load(String fileName) throws IOException
+	public File load(String fileName) throws IOException
 	{
 		File f;
   		f = new File(fileName);
@@ -98,10 +92,12 @@ public class Parser
 
   		try {
 
-				Scanner fileScan = new Scanner(new File(fileName));
+				Scanner fileScan = new Scanner(f);
 				iterate(fileScan);
 
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}
+
+		return f;
 	}
 
 	protected void iterate(Scanner fileScan)

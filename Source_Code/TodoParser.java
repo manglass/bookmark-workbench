@@ -25,7 +25,7 @@ class TodoParser extends Parser
 		//UiCli.neutralMessage(MessageType.CompletedParsingTodoManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public void load(String fileName) throws IOException
+	public File load(String fileName) throws IOException
 	{
 		//overwrites Parser.load() implementation: doesnt iterate, just preps file
 
@@ -36,6 +36,8 @@ class TodoParser extends Parser
   		{
   			f.createNewFile();
   		}
+
+  		return f;
 	}
 
 	public static ArrayList<String> clean(String line)
@@ -66,7 +68,7 @@ class TodoParser extends Parser
 		//unneeded?
 	}
 
-	public static void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)
+	public void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)
 	{
 		//for to do list object.. need list of category, with it list of url objects and tehn the objects list of to dos
 
