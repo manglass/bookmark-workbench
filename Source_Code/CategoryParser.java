@@ -40,6 +40,8 @@ class CategoryParser extends Parser
 	public void update(String line, LineStatus status, Scanner fileScan) 
 	{
 		Scanner lineScan;
+		System.out.println();//eee+
+		System.out.println("CategoryParser----in update -- LINE: " + line + "is : " + status.toString());//eee+
 		
 		lineScan = new Scanner (line);
 		lineScan.useDelimiter(", ");
@@ -51,21 +53,25 @@ class CategoryParser extends Parser
 			word = lineScan.next();
 			word = word.replace("[[/Category]]", "");
 			word = word.replace("[[Category]]", "");
+			System.out.println();//eee+
+			System.out.println("CategoryParser---- line is scrubbed, now:" + word);//eee+
 
 			if(!isPresent(word, BookmarkWorkbench.categoryManifest))
 			{
+				System.out.println();//eee+
+		    	System.out.println("CategoryParser---- call add to category manifest.");//eee+
 				add(word, BookmarkWorkbench.categoryManifest);
+				System.out.println();//eee+
+				System.out.println("CategoryParser---- calls invoke");//eee+
 				invoke(word);
 				//initializes object with category name//load into working memory: categorycard array like manifest (at the end of all entries, searches for Urls to connect)
 			}
 			else
 			{
-				if(isDouble(word, BookmarkWorkbench.categoryManifest))
+				if(!isDouble(word, BookmarkWorkbench.categoryManifest))
 				{
-					//do nothing
-				}
-				else
-				{
+					System.out.println();//eee+
+					System.out.println("CategoryParser---- calls invoke on line already in the manifest.");//eee+
 					invoke(word);
 				}
 			}
@@ -97,6 +103,10 @@ class CategoryParser extends Parser
 	private static void invoke(String title)
 	{
 		ArrayList<CategoryCard> categoryArray = CategoryCard.getAllCategory();
+		System.out.println();//eee+
+		System.out.println("CategoryParser---- creates array, which is: " + categoryArray.size());//eee+
+		System.out.println();//eee+
+		System.out.println("CategoryParser---- creates new category object");//eee+		
 		categoryArray.add(new CategoryCard(title));
 	}
 

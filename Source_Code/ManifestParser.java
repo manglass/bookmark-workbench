@@ -98,6 +98,8 @@ public class ManifestParser extends Parser
 										UrlCard url = allUrls.get(i);
 										url.setCategory(CategoryParser.clean(line));
 										Parser category = new CategoryParser();
+										System.out.println();//eee+
+										System.out.println("ManifestParser----calls category parser update");//eee+										
 										category.update(line, status, fileScan);
 										System.out.println();//eee+
 										System.out.println("ManifestParser----update -- CATEGORYLINE: " + line + "in obj: " + url);//eee+

@@ -77,7 +77,8 @@ public class Parser
 	{
 		//append successful lines to the '*_manifest'
   		try {
-
+			System.out.println();//eee+
+			System.out.println("*Parser---- line is added to: " + fileName);//eee+
 	  		FileWriter fstream = new FileWriter(fileName,true);
 	  		BufferedWriter out = new BufferedWriter(fstream);
 	  		out.write(arg + "\n");
