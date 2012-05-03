@@ -39,7 +39,7 @@ class CategoryParser extends Parser
   		return f;
 	}
 
-	public void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) throws IOException
 	{
 		Parser category = new CategoryParser();
 		Scanner lineScan;
@@ -113,7 +113,7 @@ class CategoryParser extends Parser
 
 	}
 
-	public void isPresent(String arg)
+	public void isPresent(String arg) throws IOException
 	{
 		boolean isPresent = false;
 		Parser category = new CategoryParser();

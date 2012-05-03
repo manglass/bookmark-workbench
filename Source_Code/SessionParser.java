@@ -97,7 +97,7 @@ public class SessionParser extends Parser
 		//UiCli.neutralMessage(MessageType.CompletedParsingSessionFile); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 	}
 
-	public void update(String line, LineStatus status, Scanner fileScan) 
+	public void update(String line, LineStatus status, Scanner fileScan) throws IOException
 	{
 		System.out.println();//eee+
 		System.out.println("SessionParser----begin update with: " + line + "of type: " + status.toString());//eee+

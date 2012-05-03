@@ -56,7 +56,7 @@ public class ManifestParser extends Parser
 		todo.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 	}
 
-	public void update(String line, LineStatus status, Scanner fileScan)
+	public void update(String line, LineStatus status, Scanner fileScan) throws IOException
 	{
 		System.out.println();//eee+
 		System.out.println("ManifestParser----now in update");//eee+
