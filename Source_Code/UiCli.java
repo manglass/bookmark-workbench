@@ -67,13 +67,17 @@ class UiCli extends Ui
 
 		for (int i = 0; i<list.size(); i++)
 		{
-			category = list.get(i).getTitle();
+			UrlCard url = list.get(i);
+			category = url.getTitle();
 
 			System.out.print(printBox(category, TitleBox, '*', '*', 1));
 
 			System.out.println();
 			System.out.println();
-			list.get(i).showUrl();
+			url.prettyPrint();
+
+			System.out.println();
+			url.showTodo();
 		}
 	}
 
