@@ -38,10 +38,7 @@ class UiCli extends Ui
 	public void viewCategoryList()
 	{
 		System.out.println();
-		System.out.println("*****************");
-		System.out.println("** Categories: **");
-		System.out.println("*****************");
-		System.out.println();
+		System.out.print(printBox("Categories:", TitleBox, '*', '*', 1));	
 
 		try {
 
@@ -64,9 +61,20 @@ class UiCli extends Ui
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}	
 	}
 
-	public void viewToDoList()
+	public void viewToDoList(ArrayList<CategoryCard> list)
 	{
+		String category;
 
+		for (int i = 0; i<list.size(); i++)
+		{
+			category = list.get(i).getTitle();
+
+			System.out.print(printBox(category, TitleBox, '*', '*', 1));
+
+			System.out.println();
+			System.out.println();
+			list.get(i).showUrl();
+		}
 	}
 
 	public void boilerPlate(MessageType message)
@@ -96,11 +104,8 @@ class UiCli extends Ui
 				System.out.println();
 				System.out.println();
 
-				System.out.println("*********************************************");
-				System.out.println("**   Manually add a Browser Session File   **");
-				System.out.println("*********************************************");
+				System.out.print(printBox("Manually add a Browser Session File", TitleBox, '*', '*', 1));
 
-				System.out.println();
 				System.out.println();
 
 				System.out.println("Prior to the load process: ");
@@ -268,6 +273,31 @@ class UiCli extends Ui
 				System.out.println("**   %% Your session file has been loaded %%   **");
 				System.out.println("*************************************************");
 				System.out.println();
+			}
+
+				break;
+		}
+	}
+
+	private static String printBox(String title, InterfaceElements boxType, char symbol, char endCap, int layers)
+	{
+		switch(boxType)
+		{
+			case TitleBox :
+			{
+				//int 'layers' is unimplemented here for the time being
+
+				String border;
+
+				for (int i = 0; i<title.length() + 4; i++)
+				{
+					border += symbol;
+				}
+
+				String edging = endCap + endCap;
+				String corner = endCap + border + endCap + "\n";
+
+				return corner + edging + " " + title + " " + edging + corner;
 			}
 
 				break;

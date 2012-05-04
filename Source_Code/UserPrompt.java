@@ -272,7 +272,7 @@ public class UserPrompt
 							 break;
 					case 3:  userInterface.viewUrlList(CategoryCard.getAllCategory());
 							 break;
-					case 4:  System.out.println("todo.listAll()");
+					case 4:  userInterface.viewToDoList();
 							 break;
 					case 5:  System.out.println("category.view()");
 							 break;
