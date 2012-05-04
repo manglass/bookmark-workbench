@@ -70,8 +70,7 @@ public class UserPrompt
 			int userOption = 0;
 
 			System.out.print("Please enter option 1 or 2: ");
-			userOption = scan.nextInt();
-			scan.nextLine(); //nextInt error correction
+			userOption = Integer.parseInt(scan.nextLine());
 			System.out.println();
 
 			if(userOption == 1)
@@ -216,8 +215,7 @@ public class UserPrompt
 					int userOption = 0;
 
 					System.out.print("Please enter option 1 or 2: ");
-					userOption = scan.nextInt();
-					scan.nextLine(); //nextInt error correction
+					userOption = Integer.parseInt(scan.nextLine());
 					System.out.println();
 
 					if(userOption == 1)
@@ -272,7 +270,7 @@ public class UserPrompt
 							 break;
 					case 2:  userInterface.viewCategoryList();
 							 break;
-					case 3:  System.out.println("url.listAll()");
+					case 3:  userInterface.viewUrlList(CategoryCard.getAllCategory());
 							 break;
 					case 4:  System.out.println("todo.listAll()");
 							 break;
@@ -288,9 +286,16 @@ public class UserPrompt
 								String query = scan.nextLine();//eee+
 //eee+
 								ArrayList<Integer> search = test.urlSearch(query);//eee+
-								int urlIndex = test.urlResultSet(search);//eee+
-//eee+
-								userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+								
+								if(search.size()>0)
+								{
+									int urlIndex = test.urlResultSet(search);//eee+
+									userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+								}
+								else
+								{
+									System.out.println("Your search returned no results."); //eee(USE!, but enhance)
+								}//eee+
 							 }//eee+
 							 break;//eee+
 //eee+

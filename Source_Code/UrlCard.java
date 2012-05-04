@@ -60,7 +60,7 @@ class UrlCard implements Card
 
 	public void showCategory()
 	{
-		for (int i = 0; i < category.size(); i++) {System.out.println(category.get(i));}	
+		for (int i = 0; i < category.size(); i++) {System.out.println("\n" + category.get(i));}	
 	}
 
 	public void setTodo(ArrayList<String> todo)

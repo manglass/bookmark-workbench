@@ -10,6 +10,8 @@ This family of classes supplies the views and partial graphic elements for the p
 
 *****************************************************************************************/
 
+import java.util.*;
+
 class Ui
 {
 	public void viewUrlCard(UrlCard url)
@@ -17,7 +19,7 @@ class Ui
 
 	}
 
-	public void viewUrlList()
+	public void viewUrlList(ArrayList<CategoryCard> list)
 	{
 
 	}
