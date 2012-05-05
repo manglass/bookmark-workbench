@@ -1,0 +1,103 @@
+
+
+
+
+
+
+
+*****************************
+***   User test fallout:  ***
+*****************************
+
+
+Critical
+--------
+
+	* 	Url appears in view in triplicate
+
+		--To Reproduce: 
+
+			Try to use menu item #3 'List all Urls (ordered by category)' or #4 == urls by categroy appear in triples
+
+			[3].  *List all* 'URLs' (ordered by Category)
+			[4].  *List all* 'To Do' Items (ordered by Category)
+
+		-- Possible code locations of error:
+
+			>> Class Category Parser, Method associate (my money is on the logic being slightly off here)
+			>> Class UiCli, Method viewUrlList
+
+	* Signup/Signin selection process: Text entry kills execution.
+
+		--To Reproduce:
+
+			Enter text instead of integers when choosing 1 or 2.
+
+		-- To Fix:
+
+			>> I fixed these issues elsewhere with try catch statements and boolean logic, I can do the same here.
+
+	* Signup process: New line entry creates 'blank' username.
+
+		--To Reproduce:
+
+			When entering username, just hit enter.
+
+		-- To Fix:
+
+			>> Apply conditional logic to circumvent blank entries.
+
+	* Signin process/Username does not exist path: Text entry kills execution.
+
+		--To Reproduce:
+
+			Enter text instead of integers when choosing 1 or 2.
+
+		-- To Fix:
+
+			>> I fixed these issues elsewhere with try catch statements and boolean logic, I can do the same here.	
+
+	* [1] Manually Add a Browser Session File/Are you sure this is the correct file?: Text entry kills execution.
+
+		--To Reproduce:
+
+			Enter text instead of integers when choosing 1 or 2.
+
+		-- To Fix:
+
+			>> I fixed these issues elsewhere with try catch statements and boolean logic, I can do the same here.	
+
+
+Major
+-----
+
+	* When chosen, Menu selections appear above menu in Cli
+
+		--To Reproduce:
+
+		--Possible fix:
+
+			>> Display all menu items in graphical format so that they can be scrollable info frames.
+
+
+Minor
+-----
+
+	* Help content needs to be populated in the 'Help' menu item.
+
+		-- To Fix:
+
+			>> Enter help content for each menu item with detailed instructions and tips/tricks.
+
+
+
+
+*****************************
+***   Codebase Refactor:  ***
+*****************************
+
+--> Clean up/ update each class file header, add all methods and API information, and better descriptions.
+
+--> Cleanup/ update each class unit test main method.
+
+--> Complete porting any Cli 'graphics' and 'titles' and 'boilerplate' code out of the program model/controllers (ex. UserPrompt, etc...)
