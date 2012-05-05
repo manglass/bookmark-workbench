@@ -1,3 +1,15 @@
+/*****************************************************************************************
+UiCli.java
+
+This is a class of reusable partial UI elements.
+
+These are used in GUI views.  
+
+
+	Methods:
+		main(String[])	//unit test method
+
+*****************************************************************************************/
 
 import javax.swing.*;
 import javax.swing.JPanel;
