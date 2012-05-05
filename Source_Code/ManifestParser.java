@@ -39,9 +39,6 @@ public class ManifestParser extends Parser
 		System.out.println();//eee+
 		System.out.println("ManifestParser----init category parser");//eee+
 		BookmarkWorkbench.todoManifest = userName + "_todo_manifest.txt";
-		TodoParser.initialize(BookmarkWorkbench.todoManifest);
-		System.out.println();//eee+
-		System.out.println("ManifestParser----init todo parser");//eee+
 
 		UrlCard.initialize();
 
@@ -53,7 +50,6 @@ public class ManifestParser extends Parser
 		//UiCli.neutralMessage(MessageType.CompletedParsingManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
 		
 		category.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
-		todo.associate(UrlCard.getAllUrls(), CategoryCard.getAllCategory());
 
 		System.out.println();//eee+
 		System.out.println("The system categories: ");//eee+

@@ -16,30 +16,6 @@ import java.io.*;
 
 class TodoParser extends Parser 
 {
-	public static void initialize(String fileName) throws IOException
-	{
-		Parser todo = new TodoParser();
-
-		TodoCard.initialize();
-		todo.load(fileName);
-		//UiCli.neutralMessage(MessageType.CompletedParsingTodoManifest); //concider not showing this alert to user? -- instead write it to a log file with date stamp?
-	}
-
-	public File load(String fileName) throws IOException
-	{
-		//overwrites Parser.load() implementation: doesnt iterate, just preps file
-
-		File f;
-  		f = new File(fileName);
-  		
-  		if (!f.exists())
-  		{
-  			f.createNewFile();
-  		}
-
-  		return f;
-	}
-
 	public static ArrayList<String> clean(String line)
 	{
 		Scanner lineScan;
@@ -61,18 +37,6 @@ class TodoParser extends Parser
 		}
 
 		return todos;
-	}
-
-	private static void invoke(String title)
-	{
-		//unneeded?
-	}
-
-	public void associate(ArrayList<UrlCard> urlsList, ArrayList<CategoryCard> categoriesList)
-	{
-		//for to do list object.. need list of category, with it list of url objects and tehn the objects list of to dos
-
-		//here i am associating the category objects to the todo list... later create the output view...
 	}
 
 	//-------------------------------------------------------------------------------

@@ -117,7 +117,7 @@ class UiCli extends Ui
 				System.out.println("There are " + UrlCard.getAllUrlsCount() + " Urls");
 				System.out.println("and " + CategoryCard.getAllCategoryCount() + " Categories");
 				System.out.println();
-				System.out.println("--> You have " + TodoCard.getAllTodosCount() + " active todo items!");
+				System.out.println("--> You have " + UrlCard.todosCount() + " active todo items!");
 
 				System.out.println();
 				System.out.println();

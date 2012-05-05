@@ -199,6 +199,23 @@ class UrlCard implements Card
 		return allUrlsCount;
 	}
 
+	public static int todosCount()
+	{
+		int todoCount;
+
+		for (int url=0; url<allUrls.size() ;url++)
+		{
+			ArrayList<String> todos = url.getTodo();
+
+			for (int todo=0; todo<todos.size(); todo++)
+			{
+				todoCount++;
+			}
+		}
+
+		return todoCount;
+	}
+
 	public static ArrayList<UrlCard> getAllUrls()
 	{
 		return allUrls;

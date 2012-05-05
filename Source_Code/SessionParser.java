@@ -181,9 +181,6 @@ public class SessionParser extends Parser
 		System.out.println();//eee+
 		System.out.println("SessionParser----Scrap: CategoryCard");//eee+
 		CategoryCard.clearOut();
-		System.out.println();//eee+
-		System.out.println("SessionParser----Scrap: TodoCard");//eee+
-		TodoCard.clearOut();
 	}
 
 
