@@ -201,11 +201,11 @@ class UrlCard implements Card
 
 	public static int todosCount()
 	{
-		int todoCount;
+		int todoCount = 0;
 
 		for (int url=0; url<allUrls.size() ;url++)
 		{
-			ArrayList<String> todos = url.getTodo();
+			ArrayList<String> todos = allUrls.get(url).getTodo();
 
 			for (int todo=0; todo<todos.size(); todo++)
 			{

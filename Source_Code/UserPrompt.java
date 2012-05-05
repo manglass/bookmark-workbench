@@ -282,7 +282,9 @@ public class UserPrompt
 					case 6:  {//eee+
 								Scanner scan = new Scanner(System.in);//eee+
 								Brainstorm_UrlCardSearch test = new Brainstorm_UrlCardSearch();//eee+
-//eee+
+//eee+							
+								System.out.println("To view a specific 'URL Card' in the system, search for its title.");
+
 								System.out.print("Enter your search: ");//eee+
 								String query = scan.nextLine();//eee+
 //eee+
@@ -291,7 +293,8 @@ public class UserPrompt
 								if(search.size()>0)
 								{
 									int urlIndex = test.urlResultSet(search);//eee+
-									userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+									//userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+									graphicalInterface.editUrlCard();
 								}
 								else
 								{
@@ -359,9 +362,9 @@ public class UserPrompt
 		
 		System.out.println();
 
-		System.out.println("\t[2].  *List all* \'Categories\'");					//uses categorymanifest
-		System.out.println("\t[3].  *List all* \'URLs\' (ordered by Category)");	//uses categorymanifest, urlplainprint(not pretty/verbose)
-		System.out.println("\t[4].  *List all* \'To Do\' Items");					//uses todomanifest
+		System.out.println("\t[2].  *List all* \'Categories\'");					        //uses categorymanifest
+		System.out.println("\t[3].  *List all* \'URLs\' (ordered by Category)");	        //uses categorymanifest, urlplainprint(not pretty/verbose)
+		System.out.println("\t[4].  *List all* \'To Do\' Items (ordered by Category");		//uses todomanifest
 
 		System.out.println();
 

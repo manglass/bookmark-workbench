@@ -19,7 +19,7 @@ class UiGui extends Ui
 		public UiGui()
 		{
 		setBackground (Color.blue);
-		setPreferredSize (new Dimension(500, 400));
+		setPreferredSize (new Dimension(1000, 500));
 		}
 		//-----------------------------------------------------------------
 		// Draws a face.
@@ -50,6 +50,18 @@ class UiGui extends Ui
 	{
 		
 		JFrame frame = new JFrame ("Url Edit");
+		frame.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
+		
+		UiGui panel = new UiGui();
+		frame.getContentPane().add(panel);
+		frame.pack();
+		frame.setVisible(true);
+	}
+
+	public void viewUrlCard()
+	{
+		
+		JFrame frame = new JFrame ("Url View");
 		frame.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
 		
 		UiGui panel = new UiGui();
