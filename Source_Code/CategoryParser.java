@@ -43,8 +43,6 @@ class CategoryParser extends Parser
 	{
 		Parser category = new CategoryParser();
 		Scanner lineScan;
-		System.out.println();//eee+
-		System.out.println("CategoryParser----in update -- LINE: " + line + "is : " + status.toString());//eee+
 		
 		lineScan = new Scanner (line);
 		lineScan.useDelimiter(", ");
@@ -56,8 +54,6 @@ class CategoryParser extends Parser
 			word = lineScan.next();
 			word = word.replace("[[/Category]]", "");
 			word = word.replace("[[Category]]", "");
-			System.out.println();//eee+
-			System.out.println("CategoryParser---- line is scrubbed, now:" + word);//eee+
 
 			category.isPresent(word);
 		}
@@ -88,10 +84,6 @@ class CategoryParser extends Parser
 	private static void invoke(String title)
 	{
 		ArrayList<CategoryCard> categoryArray = CategoryCard.getAllCategory();
-		System.out.println();//eee+
-		System.out.println("CategoryParser---- creates array, which is: " + categoryArray.size());//eee+
-		System.out.println();//eee+
-		System.out.println("CategoryParser---- creates new category object");//eee+		
 		categoryArray.add(new CategoryCard(title));
 	}
 

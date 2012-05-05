@@ -13,9 +13,6 @@ This is the class which houses all of the user interaction logic and boilerplate
 		void help()
 		void main(String[]) //unit test method
 
-
-	//make "user_manifest.txt" a constant?
-
 *****************************************************************************************/
 
 import java.util.*;
@@ -25,7 +22,7 @@ import java.util.regex.*;
 public class UserPrompt
 {
 	private static int menuCount = 0;
-	private static Ui userInterface = new UiCli(); //this can be changed to UiGui provide true GUI
+	private static Ui userInterface = new UiCli(); //this can be interchanged to UiGui provide true GUI, should use it more polymorphically from Ui base
 	private static Ui graphicalInterface = new UiGui();
 
 	public static String welcome() throws IOException
@@ -275,28 +272,28 @@ public class UserPrompt
 							 break;
 					case 4:  userInterface.viewTodoList(CategoryCard.getAllCategory());
 							 break;
-					case 5:  {//eee+
-								Scanner scan = new Scanner(System.in);//eee+
-//eee+							
+					case 5:  {
+								Scanner scan = new Scanner(System.in);
+
 								System.out.println("To view a specific 'URL Card' in the system, search for its title.");
 
-								System.out.print("Enter your search: ");//eee+
-								String query = scan.nextLine();//eee+
-//eee+
-								ArrayList<Integer> search = userInterface.urlSearch(query);//eee+
+								System.out.print("Enter your search: ");
+								String query = scan.nextLine();
+
+								ArrayList<Integer> search = userInterface.urlSearch(query);
 								
 								if(search.size()>0)
 								{
-									int urlIndex = userInterface.urlResultSet(search);//eee+
-									userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
+									int urlIndex = userInterface.urlResultSet(search);
+									userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));
 								}
 								else
 								{
 									System.out.println();
-									System.out.println("Your search returned no results."); //eee(USE!, but enhance)
-								}//eee+
-							 }//eee+
-							 break;//eee+
+									System.out.println("Your search returned no results.");
+								}
+							 }
+							 break;
 					case 6:  {
 								if(UrlCard.getAllUrls().size()>0)
 									graphicalInterface.viewRandomUrlCard();
@@ -355,18 +352,18 @@ public class UserPrompt
 		
 		System.out.println();
 
-		System.out.println("\t[2].  *List all* \'Categories\'");					        //uses categorymanifest
-		System.out.println("\t[3].  *List all* \'URLs\' (ordered by Category)");	        //uses categorymanifest, urlplainprint(not pretty/verbose)
-		System.out.println("\t[4].  *List all* \'To Do\' Items (ordered by Category)");		//uses todomanifest
+		System.out.println("\t[2].  *List all* \'Categories\'");					        
+		System.out.println("\t[3].  *List all* \'URLs\' (ordered by Category)");	        
+		System.out.println("\t[4].  *List all* \'To Do\' Items (ordered by Category)");		
 
 		System.out.println();
 
-		System.out.println("\t[5].  *View Selected* \'URL Card\'");					//searches the url card array for element and shows view
-		System.out.println("\t[6].  *View Random* \'URL Card\'");					//calls view above (but randomly inserts index) from url card array
+		System.out.println("\t[5].  *View Selected* \'URL Card\'");					
+		System.out.println("\t[6].  *View Random* \'URL Card\'");				
 
 		System.out.println();
 
-		System.out.println("\t[7]. *Help* (explains all the options and what they do)");   //populate like man page... with info above (technical explination, human explination, hints, tips tricks....)
+		System.out.println("\t[7]. *Help* (explains all the options and what they do)");  
 		System.out.println("\t[8]. *Exit* the application");
 
  		System.out.println();

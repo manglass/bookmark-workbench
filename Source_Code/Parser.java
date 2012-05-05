@@ -70,8 +70,6 @@ public class Parser
 	{
 		//append successful lines to the '*_manifest'
   		try {
-			System.out.println();//eee+
-			System.out.println("*Parser---- line is added to: " + fileName);//eee+
 	  		FileWriter fstream = new FileWriter(fileName,true);
 	  		BufferedWriter out = new BufferedWriter(fstream);
 	  		out.write(arg + "\n");
@@ -88,19 +86,10 @@ public class Parser
   		if (!f.exists())
   		{
   			f.createNewFile();
-  			System.out.println();//eee+
-		    System.out.println("*Parser----created new file: " + fileName);//eee+
   		}
-  		else//eee+
-  		{//eee+
-   			System.out.println();//eee+
-		    System.out.println("*Parser---- " + fileName + " already exists.");//eee+	
-  		}//eee+
 
   		try {
 				Scanner fileScan = new Scanner(f);
-				System.out.println();//eee+
-				System.out.println("*Parser----calls iterate");//eee+
 				iterate(fileScan);
 
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}
@@ -112,14 +101,8 @@ public class Parser
 	{
   		while (fileScan.hasNext())
   		{
-  			System.out.println();//eee+
-			System.out.println("*Parser----iterate begins");//eee+
 			String 		line 	   = fileScan.nextLine();
-			System.out.println();//eee+
-			System.out.println("----line: " + line);//eee+
   			LineStatus	lineStatus = readLine(line);
-  			System.out.println();//eee+
-			System.out.println("*Parser----line gets sent to update with status: " + lineStatus.toString());//eee+
   			update(line, lineStatus, fileScan);
   		}		
 	}

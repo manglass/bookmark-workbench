@@ -24,7 +24,7 @@ class Ui extends JPanel
 
 	public void viewRandomUrlCard()
 	{
-		
+
 	}
 
 	public void viewUrlList(ArrayList<CategoryCard> list)
@@ -83,7 +83,7 @@ class Ui extends JPanel
 		ArrayList<Integer> results = new ArrayList<Integer>();
 
 		query = query.replace(" ", "\\s*"); //spaces --> regex
-		Pattern scrubbedQuery = Pattern.compile("(?i)(.*\\s*" + query + "\\s*.*)"); //eee(USE!)
+		Pattern scrubbedQuery = Pattern.compile("(?i)(.*\\s*" + query + "\\s*.*)");
 
 		for(int i=0;i<urls.size();i++)
 		{
@@ -93,9 +93,6 @@ class Ui extends JPanel
 			Matcher m = scrubbedQuery.matcher(title);
 			match = m.matches();
 
-			String bo = Boolean.toString(match); //eee+
-			System.out.println("Match :" + title + ", to users input: " + scrubbedQuery + ", is " + bo); //eee+			
-
 			if(match)
 				results.add(i);
 		}
@@ -104,7 +101,7 @@ class Ui extends JPanel
 	}
 
 	public int urlResultSet(ArrayList<Integer> results) 
-	{ 	//eee(USE ALL this method)
+	{ 	
 		int urlIndex = 0;
 		ArrayList<UrlCard> urls = UrlCard.getAllUrls();
 		Scanner scan = new Scanner(System.in);
