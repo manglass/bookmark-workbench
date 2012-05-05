@@ -9,10 +9,12 @@ This family of classes supplies the views and partial graphic elements for the p
 		main(String[])	//unit test method
 
 *****************************************************************************************/
-
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import java.awt.*;
 import java.util.*;
 
-class Ui
+class Ui extends JPanel
 {
 	public void viewUrlCard(UrlCard url)
 	{
@@ -34,7 +36,17 @@ class Ui
 
 	}
 
-	public void viewToDoList()
+	public void viewTodoList(ArrayList<CategoryCard> list)
+	{
+
+	}
+
+	public void editUrlCard()
+	{
+
+	}
+
+	public void editCategoryCard()
 	{
 
 	}

@@ -25,8 +25,9 @@ class UiCli extends Ui
 	{
 		for (int i = 0; i<list.size(); i++)
 		{
-			System.out.println(list.get(i));
+			System.out.print(printBox(list.get(i).getTitle(), InterfaceElements.TitleBox, "*", "*", 1));	
 			list.get(i).showUrl();
+			System.out.println();
 		}
 	}
 
@@ -38,7 +39,7 @@ class UiCli extends Ui
 	public void viewCategoryList()
 	{
 		System.out.println();
-		System.out.print(printBox("Categories:", TitleBox, '*', '*', 1));	
+		System.out.print(printBox("Categories:", InterfaceElements.TitleBox, "*", "*", 1));	
 
 		try {
 
@@ -61,24 +62,45 @@ class UiCli extends Ui
 		} catch (Exception e) {System.err.println("Error: " + e.getMessage());}	
 	}
 
-	public void viewToDoList(ArrayList<CategoryCard> list)
+	public void viewTodoList(ArrayList<CategoryCard> list)
 	{
-		String category;
+		String categoryTitle;
 
 		for (int i = 0; i<list.size(); i++)
 		{
-			UrlCard url = list.get(i);
-			category = url.getTitle();
-
-			System.out.print(printBox(category, TitleBox, '*', '*', 1));
+			CategoryCard categorycard = list.get(i);
+			categoryTitle = categorycard.getTitle();
 
 			System.out.println();
 			System.out.println();
-			url.prettyPrint();
+
+			System.out.print(printBox(categoryTitle, InterfaceElements.TitleBox, "*", "*", 1));
 
 			System.out.println();
-			url.showTodo();
+
+			ArrayList<UrlCard> url = categorycard.getUrl();
+
+			for (int j = 0; j<url.size(); j++)
+			{
+				UrlCard urlcard = url.get(j);
+
+				System.out.println();
+				System.out.println(urlcard.prettyPrint());
+
+				System.out.println();
+				urlcard.showTodo();
+			}
 		}
+	}
+
+	public void editUrlCard()
+	{
+		
+	}
+
+	public void editCategoryCard()
+	{
+		
 	}
 
 	public void boilerPlate(MessageType message)
@@ -108,7 +130,7 @@ class UiCli extends Ui
 				System.out.println();
 				System.out.println();
 
-				System.out.print(printBox("Manually add a Browser Session File", TitleBox, '*', '*', 1));
+				System.out.print(printBox("Manually add a Browser Session File", InterfaceElements.TitleBox, "*", "*", 1));
 
 				System.out.println();
 
@@ -283,15 +305,17 @@ class UiCli extends Ui
 		}
 	}
 
-	private static String printBox(String title, InterfaceElements boxType, char symbol, char endCap, int layers)
+	private static String printBox(String title, InterfaceElements boxType, String symbol, String endCap, int layers)
 	{
+		String newTitle = "-- title goes here --";
+
 		switch(boxType)
 		{
 			case TitleBox :
 			{
 				//int 'layers' is unimplemented here for the time being
 
-				String border;
+				String border = "";
 
 				for (int i = 0; i<title.length() + 4; i++)
 				{
@@ -299,13 +323,15 @@ class UiCli extends Ui
 				}
 
 				String edging = endCap + endCap;
-				String corner = endCap + border + endCap + "\n";
+				String corner = "\n" + endCap + border + endCap + "\n";
 
-				return corner + edging + " " + title + " " + edging + corner;
+				newTitle = corner + edging + " " + title + " " + edging + corner;
 			}
 
 				break;
 		}
+
+		return newTitle;
 	}
 
 }//end UiCli class

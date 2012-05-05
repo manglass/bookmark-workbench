@@ -75,7 +75,7 @@ class UrlCard implements Card
 
 	public void showTodo()
 	{
-		for (int i = 0; i < todo.size(); i++) {System.out.println(todo.get(i));}		
+		for (int i = 0; i < todo.size(); i++) {System.out.println("\t" + todo.get(i));}		
 	}
 
 	public void setNotes(ArrayList<String> notes)
@@ -95,7 +95,7 @@ class UrlCard implements Card
 
 	public String toString()
 	{
-		return "Url :" + "\n" + title + "\n" + url;
+		return "\n" + title + "\n" + url;
 	}
 
 	public String prettyPrint()

@@ -26,6 +26,7 @@ public class UserPrompt
 {
 	private static int menuCount = 0;
 	private static Ui userInterface = new UiCli(); //this can be changed to UiGui provide true GUI
+	private static Ui graphicalInterface = new UiGui();
 
 	public static String welcome() throws IOException
 	{
@@ -272,7 +273,7 @@ public class UserPrompt
 							 break;
 					case 3:  userInterface.viewUrlList(CategoryCard.getAllCategory());
 							 break;
-					case 4:  userInterface.viewToDoList();
+					case 4:  userInterface.viewTodoList(CategoryCard.getAllCategory());
 							 break;
 					case 5:  System.out.println("category.view()");
 							 break;
@@ -301,11 +302,11 @@ public class UserPrompt
 //eee+
 					case 7:  System.out.println("category.viewRandom()");
 							 break;
-					case 8:  System.out.println("url.viewRandom()");
+					case 8:  userInterface.viewUrlCard(UrlCard.getAllUrls().get((int)(Math.random() * UrlCard.getAllUrls().size())));
 							 break;
 					case 9:  System.out.println("category.edit()");
 							 break;		
-					case 10: System.out.println("url.edit()");
+					case 10: graphicalInterface.editUrlCard();
 							 break;
 					case 11: help();
 							 break;							 							 					 													
