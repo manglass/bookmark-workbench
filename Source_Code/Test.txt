@@ -1,0 +1,11 @@
+jones - Google Search
+https://www.google.com/search?sourceid=chrome&ie=UTF-8&q=user+stories
+[[Category]]software development, design, programming[[/Category]]
+[[ToDo]]*Find books on software design and user stories, *Find on youtube[[/ToDo]]
+[[Notes]]I read about these in a blog article about software design last week.[[/Notes]]
+
+frank - Google Search
+https://www.google.com/search?sourceid=chrome&ie=UTF-8&q=user+stories
+[[Category]]software development, design, programming[[/Category]]
+[[ToDo]]*Find books on software design and user stories, *Find on youtube[[/ToDo]]
+[[Notes]]I read about these in a blog article about software design last week.[[/Notes]]

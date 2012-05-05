@@ -46,7 +46,7 @@ class UiGui extends Ui
 			}
 		}
 
-	public void editUrlCard()
+	public void viewRandomUrlCard()
 	{
 		
 		JFrame frame = new JFrame ("Url Edit");
@@ -57,18 +57,4 @@ class UiGui extends Ui
 		frame.pack();
 		frame.setVisible(true);
 	}
-
-	public void viewUrlCard()
-	{
-		
-		JFrame frame = new JFrame ("Url View");
-		frame.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
-		
-		UiGui panel = new UiGui();
-		frame.getContentPane().add(panel);
-		frame.pack();
-		frame.setVisible(true);
-	}
-
-
 }

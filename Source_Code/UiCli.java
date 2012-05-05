@@ -18,7 +18,38 @@ class UiCli extends Ui
 {
 	public void viewUrlCard(UrlCard url)
 	{
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------");
+		System.out.println();
+
 		System.out.println(url.prettyPrint()); //temp view, need to add ALL attributes and card-like structure.
+		System.out.println();
+
+		System.out.println();
+		System.out.println("Categories: ");
+		System.out.println("----------"  );		
+		System.out.println();
+
+		url.showCategory();
+		System.out.println();
+
+		System.out.println();
+		System.out.println("Todos: ");
+		System.out.println("-----"  );		
+		System.out.println();
+		
+		url.showTodo();
+		System.out.println();
+
+		System.out.println("Notes: ");
+		System.out.println("-----"  );		
+		System.out.println();
+
+		url.showNotes();
+		System.out.println();
+
+		System.out.println("-------------------------------------------------------------------------------");
+		System.out.println();
 	}
 
 	public void viewUrlList(ArrayList<CategoryCard> list)

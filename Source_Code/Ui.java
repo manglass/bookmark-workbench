@@ -22,6 +22,11 @@ class Ui extends JPanel
 
 	}
 
+	public void viewRandomUrlCard()
+	{
+		
+	}
+
 	public void viewUrlList(ArrayList<CategoryCard> list)
 	{
 

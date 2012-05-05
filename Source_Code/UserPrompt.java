@@ -288,8 +288,7 @@ public class UserPrompt
 								if(search.size()>0)
 								{
 									int urlIndex = userInterface.urlResultSet(search);//eee+
-									//userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
-									graphicalInterface.editUrlCard();
+									userInterface.viewUrlCard(UrlCard.getAllUrls().get(urlIndex));//eee+
 								}
 								else
 								{
@@ -300,7 +299,7 @@ public class UserPrompt
 							 break;//eee+
 					case 6:  {
 								if(UrlCard.getAllUrls().size()>0)
-									userInterface.viewUrlCard(UrlCard.getAllUrls().get((int)(Math.random() * UrlCard.getAllUrls().size())));
+									graphicalInterface.viewRandomUrlCard();
 								else
 									System.out.println("Please add a session file first!");
 							 }
@@ -411,14 +410,14 @@ public class UserPrompt
 
 	private static void help()
 	{
-		int selection;
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("::Enter help boilerplate here...::");
 		System.out.println();
 
-		selection = scan.nextInt();
- 		scan.nextLine(); //nextInt error correction		
+		System.out.println("Help:");
+		System.out.println();
+
+		System.out.println("About this program:"); 
+		System.out.println("\tEnter session files to populate program, then work with your bookmarks.");
+		System.out.println();	
 	}
 
 	//-------------------------------------------------------------------------------
