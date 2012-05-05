@@ -12,10 +12,6 @@ A.K.A "Papa Parser" and "The Big Kahuna Parser"
 		void update(String, LineStatus)
 		void main(String[]) //unit test method
 
-
-	//be sure to check for doubles (at the right spot)... do they already exist in main manifest before adding?!
-	//use the isPresent abstract Parser method and conditional logic?
-
 *****************************************************************************************/
 
 import java.util.*;
