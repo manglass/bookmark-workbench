@@ -72,7 +72,26 @@ class UrlCard implements Card
 
 	public void showTodo()
 	{
-		for (int i = 0; i < todo.size(); i++) {System.out.println("\t" + todo.get(i));}		
+		if(this.hasTodo() == true)
+			for (int i = 0; i < todo.size(); i++) {System.out.println("\t" + todo.get(i));}	
+		else
+			System.out.println("-- No active todos --");
+	}
+
+	private boolean hasTodo()
+	{
+		boolean hasTodos = false;
+
+		if(todo.get(0).equals(""))
+		{
+			hasTodos = false;
+		}
+		else
+		{
+			hasTodos = true;
+		}	
+
+		return hasTodos;	
 	}
 
 	public void setNotes(ArrayList<String> notes)
@@ -200,11 +219,14 @@ class UrlCard implements Card
 
 		for (int url=0; url<allUrls.size() ;url++)
 		{
-			ArrayList<String> todos = allUrls.get(url).getTodo();
-
-			for (int todo=0; todo<todos.size(); todo++)
+			if(allUrls.get(url).hasTodo())
 			{
-				todoCount++;
+				ArrayList<String> todos = allUrls.get(url).getTodo();
+
+				for (int todo=0; todo<todos.size(); todo++)
+				{
+					todoCount++;
+				}
 			}
 		}
 

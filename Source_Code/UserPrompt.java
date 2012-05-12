@@ -146,14 +146,19 @@ public class UserPrompt
 
 				switch(menuSelection)
 				{
+					//*Add* Browser 'Session File'
 					case 1:  SessionParser.get();
 							 break;
+					//*List all* 'Categories'
 					case 2:  userInterface.viewCategoryList();
 							 break;
+					//*List all* 'URLs' (ordered by Category)
 					case 3:  userInterface.viewUrlList(CategoryCard.getAllCategory());
 							 break;
+					//*List all* 'To Do' Items (ordered by Category)
 					case 4:  userInterface.viewTodoList(CategoryCard.getAllCategory());
 							 break;
+					//*View Selected* 'URL Card'
 					case 5:  {
 								Scanner scan = new Scanner(System.in);
 
@@ -176,6 +181,7 @@ public class UserPrompt
 								}
 							 }
 							 break;
+					//*View Random* 'URL Card'
 					case 6:  {
 								if(UrlCard.getAllUrls().size()>0)
 									graphicalInterface.viewRandomUrlCard();
@@ -183,8 +189,10 @@ public class UserPrompt
 									System.out.println("Please add a session file first!");
 							 }
 							 break;
+					//*Help* (explains all the options and what they do)
 					case 7: help();
-							 break;							 							 					 													
+							 break;	
+					//*Exit* the application						 							 					 													
 					case 8: {
 								userExit = true;
 							 	ManifestParser.reset();

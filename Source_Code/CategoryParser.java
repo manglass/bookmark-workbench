@@ -95,10 +95,15 @@ class CategoryParser extends Parser
 			
 			for (int urlCategory = 0; urlCategory < urlCategoryList.size(); urlCategory++)
 			{
+				String urlCategoryName = urlCategoryList.get(urlCategory);
+
 				for (int category = 0; category < categoriesList.size(); category++)
 				{
-					if(categoriesList.get(category).getTitle().equals(urlCategoryList.get(urlCategory)));
-						categoriesList.get(category).setUrl(urlsList.get(url));					
+					if(categoriesList.get(category).getTitle().equals(urlCategoryName))
+					{
+						categoriesList.get(category).setUrl(urlsList.get(url));
+						//System.out.println("Added " + urlsList.get(url) + "to " + categoriesList.get(category)); //eee+
+					}					
 				}
 			}			
 		}
