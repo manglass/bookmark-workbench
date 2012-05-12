@@ -16,13 +16,14 @@
 	--> Add: 	  Update each class file header 
 					-- add all methods and API information, and better descriptions.
 	--> Add:      Refactor Categories to display in alphabetical order with sort algorithm.
-	--> Document: Create project session test file (proper name convention and varied data)
-	--> Document: Shuffle the model relationships/dependencies and clean up UML 
-					-- read down each file and note relationships (make jpeg when done)
-	--> Document: Include instructions for Chrome and tabinfocopy use
 	--> Add:      Add help content to UserPrompt file for each menu option
-					-- Enter help content for each menu item with detailed instructions, tips/tricks.
-	--> Finalize: Create zip file of all necessary elements and email.
+					-- Enter help content for each menu item with detailed instructions, tips/tricks.	
+
+[]--> Document: Create project session test file (proper name convention and varied data)
+[]--> Document: Shuffle the model relationships/dependencies and clean up UML 
+				-- read down each file and note relationships (make jpeg when done)
+[]--> Document: Include instructions for Chrome and tabinfocopy use
+[]--> Finalize: Create zip file of all necessary elements and email.
 
 
 
