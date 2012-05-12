@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 *****************************
 ***   User test fallout:  ***
 *****************************
@@ -13,7 +6,9 @@
 Critical
 --------
 
-	* 	Url appears in view in triplicate
+	
+	* 	Url appears in view in triplicate 
+	[[[FIXED @ git branch PVCC-CS1-Final, commit 32e6ab]]]
 
 		--To Reproduce: 
 
@@ -28,6 +23,7 @@ Critical
 			>> Class UiCli, Method viewUrlList
 
 	* Signup/Signin selection process: Text entry kills execution.
+	[[[?]]]
 
 		--To Reproduce:
 
@@ -38,6 +34,7 @@ Critical
 			>> I fixed these issues elsewhere with try catch statements and boolean logic, I can do the same here.
 
 	* Signup process: New line entry creates 'blank' username.
+	[[[?]]]
 
 		--To Reproduce:
 
@@ -48,6 +45,7 @@ Critical
 			>> Apply conditional logic to circumvent blank entries.
 
 	* Signin process/Username does not exist path: Text entry kills execution.
+	[[[?]]]
 
 		--To Reproduce:
 
@@ -58,6 +56,7 @@ Critical
 			>> I fixed these issues elsewhere with try catch statements and boolean logic, I can do the same here.	
 
 	* [1] Manually Add a Browser Session File/Are you sure this is the correct file?: Text entry kills execution.
+	[[[?]]]
 
 		--To Reproduce:
 
@@ -72,6 +71,7 @@ Major
 -----
 
 	* When chosen, Menu selections appear above menu in Cli
+	[[[?]]]
 
 		--To Reproduce:
 
@@ -84,20 +84,8 @@ Minor
 -----
 
 	* Help content needs to be populated in the 'Help' menu item.
+	[[[MOVED @ 'RoundTwoRefactor.txt' todo List]]]
 
 		-- To Fix:
 
 			>> Enter help content for each menu item with detailed instructions and tips/tricks.
-
-
-
-
-*****************************
-***   Codebase Refactor:  ***
-*****************************
-
---> Clean up/ update each class file header, add all methods and API information, and better descriptions.
-
---> Cleanup/ update each class unit test main method.
-
---> Complete porting any Cli 'graphics' and 'titles' and 'boilerplate' code out of the program model/controllers (ex. UserPrompt, etc...)
