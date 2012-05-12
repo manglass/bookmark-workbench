@@ -55,6 +55,11 @@ class UrlCard implements Card
 		return category;
 	}
 
+	public void addCategory(String category)
+	{
+		this.category.add(category);
+	}
+
 	public void showCategory()
 	{
 		for (int i = 0; i < category.size(); i++) {System.out.println("\n" + category.get(i));}	
@@ -70,6 +75,11 @@ class UrlCard implements Card
 		return todo;
 	}
 
+	public void addTodo(String todo)
+	{
+		this.todo.add("* " + todo);
+	}
+
 	public void showTodo()
 	{
 		if(this.hasTodo() == true)
@@ -82,7 +92,7 @@ class UrlCard implements Card
 	{
 		boolean hasTodos = false;
 
-		if(todo.get(0).equals(""))
+		if(todo.isEmpty() || todo.get(0).equals(""))
 		{
 			hasTodos = false;
 		}
@@ -102,6 +112,11 @@ class UrlCard implements Card
 	public ArrayList<String> getNotes()
 	{
 		return notes;	
+	}
+
+	public void addNotes(String notes)
+	{
+		this.notes.add(notes);
 	}
 
 	public void showNotes()

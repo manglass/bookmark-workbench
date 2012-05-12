@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.util.*;
 import java.util.regex.*;
+import java.io.*;
 
 class Ui extends JPanel
 {
@@ -47,7 +48,7 @@ class Ui extends JPanel
 
 	}
 
-	public void editUrlCard()
+	public void editUrlCard() throws IOException
 	{
 
 	}

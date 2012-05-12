@@ -189,11 +189,14 @@ public class UserPrompt
 									System.out.println("Please add a session file first!");
 							 }
 							 break;
+					//[7]. *Edit Selected* 'URL Card'
+					case 7:  userInterface.editUrlCard();
+							 break;
 					//*Help* (explains all the options and what they do)
-					case 7: help();
+					case 8: help();
 							 break;	
 					//*Exit* the application						 							 					 													
-					case 8: {
+					case 9: {
 								userExit = true;
 							 	ManifestParser.reset();
 							 }

@@ -1,0 +1,61 @@
+*************************
+***  Refactor Queue:  ***
+*************************
+
+
+[DONE]--> Refactor: UserPrompt file
+[DONE]--> Fix: 	    Bug -- Url Objects show up in threes using show all urls & todos
+[DONE]--> Add:      edit functionality and UI
+						-- add session parser style refresh of state?
+	--> Fix:      Bug fixes in list
+	--> Test:     Regression testing to test bug fixes.
+	--> Add: 	  Unit tests and debug information to the unit tests
+
+[DONE]--> Remove:   '//eee+' debug lines and cleanup their context
+
+	--> Add: 	  Update each class file header 
+					-- add all methods and API information, and better descriptions.
+	--> Add:      Refactor Categories to display in alphabetical order with sort algorithm.
+	--> Document: Create project session test file (proper name convention and varied data)
+	--> Document: Shuffle the model relationships/dependencies and clean up UML 
+					-- read down each file and note relationships (make jpeg when done)
+	--> Document: Include instructions for Chrome and tabinfocopy use
+	--> Add:      Add help content to UserPrompt file for each menu option
+					-- Enter help content for each menu item with detailed instructions, tips/tricks.
+	--> Finalize: Create zip file of all necessary elements and email.
+
+
+
+	Apply DRY Principle:
+	-------------------
+
+	--> Complete porting any Cli 'graphics' and 'titles' and 'boilerplate' code out of the program model/controllers (ex. UserPrompt, etc...)
+
+		-- UiCli printBox
+			* find all printed title boxes and use this method to render them
+		-- UiCli userChoice(FirstTimeOrReturning, UserDoesntExist) 
+			* combine these into one set of reusable logic
+		-- UiCli editUrlCard()
+			* uses a UserChoice 'yesno' construct: remove local logicshould call the Ui object for reuse
+		-- UiCli editUrlCard()
+			* uses a section from Session parser, abstract what can be reused by both out
+				
+					Parser session = new SessionParser();
+
+					ManifestParser.reset();
+					add("", BookmarkWorkbench.mainManifest);		
+					SessionParser.scrap();
+					ManifestParser.initialize(BookmarkWorkbench.mainManifest.replace("_main_manifest.txt", ""));
+
+
+
+
+	General Refactor Challenges, Checklists and Goals:
+	-------------------------------------------------
+
+		* ##MethodSize## Break down methods into no longer than 10 lines, preferably 5.
+		* ##FileSize##   No one file should be more than 300 lines long
+		* Break up as many dependencies as possible, 
+			-- make each file less brittle and dependent.
+		* Some things turned out too procedural 
+			-- try to make more use of polymorphism, inheritance and objects

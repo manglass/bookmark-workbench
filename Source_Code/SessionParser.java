@@ -147,7 +147,7 @@ public class SessionParser extends Parser
 		add("", BookmarkWorkbench.mainManifest); //extra line break after the object finishes
 	}
 
-	private static void scrap()
+	public static void scrap()
 	{
 		//wipe active objects from program memory
 		UrlCard.clearOut();

@@ -124,9 +124,145 @@ class UiCli extends Ui
 		}
 	}
 
-	public void editUrlCard()
+	public void editUrlCard() throws IOException
 	{
-		
+		Scanner scan = new Scanner(System.in);
+		String newCategory, newTodo, newNote;
+
+		System.out.println();
+		System.out.println("You will be presented with a listing of available urls indexed by ID#.");
+		System.out.println("Afterward you will be prompted to enter the ID# of the url you would like to edit. ");
+		System.out.println();
+		System.out.println("Would you like to continue on with the editing process?");
+		System.out.println();
+
+		System.out.println("\t[1] Yes.");
+		System.out.println("\t[2] No.");
+		System.out.println();
+		System.out.println();		
+
+		//do loop logic
+		boolean isEntryIncorrect, answer = true;
+
+		do {
+
+			int userOption = 0;
+
+			System.out.print("Please enter option 1 or 2: ");
+			userOption = scan.nextInt();
+			scan.nextLine(); //nextInt error correction
+			System.out.println();
+
+			if(userOption == 1)
+			{
+				isEntryIncorrect = false;
+				answer = true;
+			}
+			else if(userOption == 2)
+			{
+				isEntryIncorrect = false;
+				answer = false;
+			}
+			else
+				isEntryIncorrect = true;
+
+		} while(isEntryIncorrect);		
+
+		if (answer) //if user wants to continue, continue...
+		{	
+			ArrayList<UrlCard> allUrls = UrlCard.getAllUrls();
+
+			if(allUrls.size()>0) //if there are urls available in the system, continue...
+			{	
+				for(int url = 0; url<allUrls.size(); url++)
+				{
+					System.out.print("ID#: " + url);
+					System.out.println(allUrls.get(url));
+					System.out.println();
+				}
+
+				System.out.println();
+
+				int urlID = 0;
+				boolean correctInput;
+
+				do {
+					
+					try {
+						
+						System.out.print("Type the ID# for the url you would like to edit and press enter (be sure the ID# is available): ");
+
+						urlID = Integer.parseInt(scan.nextLine());
+						
+						if(urlID>=allUrls.size() || urlID<0)
+							correctInput = false;
+						else
+							correctInput = true;
+				
+					} catch (NumberFormatException e) 
+					  {System.out.println("\nPlease, enter an id number...\n"); correctInput = false;}
+				
+				} while(!correctInput);
+
+				System.out.println();
+
+				//Category
+				System.out.println("If you would like to add a Category, type the title and press the enter key.");
+				System.out.print("If you have nothing new to type, just hit the enter key: ");				
+				newCategory = scan.nextLine();
+				if(newCategory.isEmpty())
+					{System.out.println("\t >> No category will be added."); System.out.println();}
+				else
+				{
+					CategoryParser category = new CategoryParser();
+					category.isPresent(newCategory);
+					UrlCard.getAllUrls().get(urlID).addCategory(newCategory);
+					System.out.println("\t >> '" + newCategory + "' has been added to the category information about this Url."); 
+					System.out.println();
+				}
+
+				//Todo
+				System.out.println("If you would like to add a Todo item, type it here and press the enter key (just enter a line of text, '*' will be added automatically).");
+				System.out.print("If you have nothing new to type, just hit the enter key: ");
+				newTodo = scan.nextLine();
+				if(newTodo.isEmpty())
+					{System.out.println("\t >> No todo item will be added."); System.out.println();}
+				else
+				{
+					UrlCard.getAllUrls().get(urlID).addTodo(newTodo);
+					System.out.println("\t >> '* " + newTodo + "' has been added to the todo information about this Url.");
+					System.out.println();
+				}
+
+				//Note
+				System.out.println("If you would like to add a Note, type it out here and press the enter key.");
+				System.out.print("If you have nothing new to type, just hit the enter key: ");				
+				newNote = scan.nextLine();
+				if(newNote.isEmpty())
+					{System.out.println("\t >> No note will be added."); System.out.println();}
+				else
+				{
+					UrlCard.getAllUrls().get(urlID).addNotes(" " + newNote);
+					System.out.println("\t >> '" + newNote + "' has been added to the notes information about this Url.");
+					System.out.println();
+				}
+
+				Parser session = new SessionParser();
+
+				ManifestParser.reset();
+				SessionParser.add("", BookmarkWorkbench.mainManifest);		
+				SessionParser.scrap();
+				ManifestParser.initialize(BookmarkWorkbench.mainManifest.replace("_main_manifest.txt", ""));
+
+				System.out.println(UrlCard.getAllUrls().get(urlID) + "\n \t>> Has been updated!");
+			}
+			else
+			{
+				System.out.println();
+				System.out.println("There are no URLs available in the system at this time, please add some!");
+				System.out.println();
+			}
+		}
 	}
 
 	public void editCategoryCard()
@@ -262,8 +398,12 @@ class UiCli extends Ui
 
 				System.out.println();
 
-				System.out.println("\t[7]. *Help* (explains all the options and what they do)");  
-				System.out.println("\t[8]. *Exit* the application");
+				System.out.println("\t[7].  *Edit Selected* \'URL Card\'");
+
+				System.out.println();
+
+				System.out.println("\t[8].  *Help* (explains all the options and what they do)");  
+				System.out.println("\t[9].  *Exit* the application");
 
 		 		System.out.println();
 			}
