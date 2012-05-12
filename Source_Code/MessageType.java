@@ -8,8 +8,8 @@ Enumerated elements for use as symbols:
 
 public enum MessageType 
 {
-	/* boilerPlate    */ ManuallyAddBrowserSessionFile, ListNumberOfCategoriesUrlsandToDos, EndingCredits,
-	/* userChoice     */ YesOrNo,
+	/* boilerPlate    */ IntroCredits, SignUp, SignIn, ListNumberOfCategoriesUrlsandToDos, MainMenuHead, MainMenuBody, ManuallyAddBrowserSessionFile, EndingCredits,
+	/* userChoice     */ YesOrNo, FirstTimeOrReturning, UserDoesntExist,
 	/* warningMessage */ UsernameTaken, ProblemParsingManifest, ProblemParsingSessionFile, 
 	/* neutralMessage */ CompletedParsingManifest, CompletedParsingSessionFile
 	/* successMessage */ 

@@ -29,62 +29,9 @@ public class UserPrompt
 	{
 		bootstrap();
 
-		System.out.println();
-		System.out.println(); 
-		System.out.println();
+		userInterface.boilerPlate(MessageType.IntroCredits);
 
-		System.out.println("  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-   ");
-		System.out.println("-------------------------------------------------------------------");
-		System.out.println(" _                                                                  ");
-		System.out.println("|_)  _   _  |  ._ _   _. ._ |    \\    / _  ._ |  |_   _  ._   _ |_  ");
-		System.out.println("|_) (_) (_) |< | | | (_| |  |<    \\/\\/ (_) |  |< |_) (/_ | | (_ | | ");
-		System.out.println("																	"); 
-		System.out.println("-------------------------------------------------------------------");
-		System.out.println("  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-   ");
- 
-		System.out.println();
-		System.out.println(); 
-		System.out.println();		
-
-		System.out.println("****************************************");
-		System.out.println("**   Please select an option below:   **");
-		System.out.println("****************************************");
-
-		System.out.println();
-		System.out.println();
-
-		System.out.println("\t[1] This is my first time using Bookmark Workbench, I need to signup and set up a username.");
-		System.out.println("\t[2] I already have a username, let me sign in to my account.");
-		System.out.println();
-		System.out.println();		
-
-		Scanner scan = new Scanner(System.in);
-
-		//do loop logic
-		boolean isEntryIncorrect, isFirstTime = true;
-
-		do {
-
-			int userOption = 0;
-
-			System.out.print("Please enter option 1 or 2: ");
-			userOption = Integer.parseInt(scan.nextLine());
-			System.out.println();
-
-			if(userOption == 1)
-			{
-				isFirstTime = true;
-				isEntryIncorrect = false;
-			}
-			else if(userOption == 2)
-			{
-				isFirstTime = false;
-				isEntryIncorrect = false;
-			}
-			else
-				isEntryIncorrect = true;
-
-	 	} while(isEntryIncorrect);
+		boolean isFirstTime = userInterface.userChoice(MessageType.FirstTimeOrReturning);
 
 	 	String userName;
 
@@ -98,27 +45,17 @@ public class UserPrompt
 		return userName;
 	}
 
+	private static void bootstrap() throws IOException
+	{
+		Parser user = new UserParser();
+		user.load("user_manifest.txt");
+	}
+
 	private static String signUp()
 	{
+		userInterface.boilerPlate(MessageType.SignUp);
+
 		Scanner scan = new Scanner(System.in);
-
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-
-		System.out.println("  ____ ____ ____ ____    ____ ____  "); 
-		System.out.println(" ||S |||i |||g |||n ||  ||U |||p || ");
-		System.out.println(" ||__|||__|||__|||__||  ||__|||__|| ");
-		System.out.println(" |/__\\|/__\\|/__\\|/__\\|  |/__\\|/__\\| ");
-
-		System.out.println();
-		System.out.println();
-
-		System.out.println(" Welcome to Bookmark Workbench!");
-		System.out.println(" ------------------------------");
-		System.out.println();
-		System.out.println("In order to begin storing and working with your bookmarks, please choose a simple and unique username.");
 
 		//do loop logic
 		boolean isUserNameTaken = false;
@@ -144,28 +81,13 @@ public class UserPrompt
 
 	private static String signIn()
 	{
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
+		userInterface.boilerPlate(MessageType.SignIn);
 
-        System.out.println("  ____ ____ ____ ____    ____ ____  "); 
-		System.out.println(" ||S |||i |||g |||n ||  ||I |||n || ");
-		System.out.println(" ||__|||__|||__|||__||  ||__|||__|| ");
-		System.out.println(" |/__\\|/__\\|/__\\|/__\\|  |/__\\|/__\\| ");
-
-		System.out.println();
-		System.out.println();
-
-		System.out.println(" Welcome back to Bookmark Workbench!");
-		System.out.println(" -----------------------------------");
-		System.out.println();
-		System.out.println("Please enter your username to resume working with your bookmarks.");
+		Scanner scan = new Scanner(System.in);
 
 		//do loop logic
 		boolean isUserNameNotInList = true;
 		String userName;
-		Scanner scan = new Scanner(System.in);
 
 		do {
 
@@ -196,41 +118,7 @@ public class UserPrompt
 
 			if(isUserNameNotInList==true)
 			{
-				System.out.println("*****************************************************************************");
-				System.out.println("**   !! The username you entered does not exist in Bookmark Workbench !!   **");
-				System.out.println("*****************************************************************************");
-			    System.out.println();
-
-				System.out.println("\t[1] I want to sign up and create a new username.");
-				System.out.println("\t[2] I entered my username incorrectly, I want to try again.");
-				System.out.println();
-
-				//do loop logic
-				boolean isEntryIncorrect, isFirstTime = true;
-
-				do {
-
-					int userOption = 0;
-
-					System.out.print("Please enter option 1 or 2: ");
-					userOption = Integer.parseInt(scan.nextLine());
-					System.out.println();
-
-					if(userOption == 1)
-					{
-						isFirstTime = true;
-						isEntryIncorrect = false;
-					}
-					else if(userOption == 2)
-					{
-						isFirstTime = false;
-						isEntryIncorrect = false;
-					}
-					else
-						isEntryIncorrect = true;
-
-			 	} while(isEntryIncorrect);
-
+				boolean isFirstTime = userInterface.userChoice(MessageType.UserDoesntExist);
 
 				if(isFirstTime)
 				{
@@ -242,12 +130,6 @@ public class UserPrompt
 		} while(isUserNameNotInList);
 
 		return userName;
-	}
-
-	private static void bootstrap() throws IOException
-	{
-		Parser user = new UserParser();
-		user.load("user_manifest.txt");
 	}
 
 	public static void mainMenu(String user) throws IOException
@@ -331,47 +213,15 @@ public class UserPrompt
 			menuCount++;
 		}
 
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
+		userInterface.boilerPlate(MessageType.MainMenuHead);
+		userInterface.boilerPlate(MessageType.ListNumberOfCategoriesUrlsandToDos);
+		userInterface.boilerPlate(MessageType.MainMenuBody);
 
-		System.out.println("\t\t+-++-++-++-+ +-++-++-++-+");
-		System.out.println("\t\t|M||a||i||n| |M||e||n||u|");
- 		System.out.println("\t\t+-++-++-++-+ +-++-++-++-+");
-
- 		System.out.println();
- 		System.out.println(); 		
-
- 		userInterface.boilerPlate(MessageType.ListNumberOfCategoriesUrlsandToDos);
-
- 		System.out.println();
- 		System.out.println(); 
- 
-		System.out.println("\t[1].  *Add* Browser \'Session File\'");
-		
-		System.out.println();
-
-		System.out.println("\t[2].  *List all* \'Categories\'");					        
-		System.out.println("\t[3].  *List all* \'URLs\' (ordered by Category)");	        
-		System.out.println("\t[4].  *List all* \'To Do\' Items (ordered by Category)");		
-
-		System.out.println();
-
-		System.out.println("\t[5].  *View Selected* \'URL Card\'");					
-		System.out.println("\t[6].  *View Random* \'URL Card\'");				
-
-		System.out.println();
-
-		System.out.println("\t[7]. *Help* (explains all the options and what they do)");  
-		System.out.println("\t[8]. *Exit* the application");
-
- 		System.out.println();
+ 		Scanner scan = new Scanner(System.in);
 
  		//do loop logic
  		boolean isEntryIncorrect;
  		int menuSelection = 0;
- 		Scanner scan = new Scanner(System.in);
 
  		boolean correctInput;
 
