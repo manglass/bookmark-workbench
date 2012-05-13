@@ -19,11 +19,15 @@
 	--> Add:      Add help content to UserPrompt file for each menu option
 					-- Enter help content for each menu item with detailed instructions, tips/tricks.	
 
-[]--> Document: Create project session test file (proper name convention and varied data)
-[]--> Document: Shuffle the model relationships/dependencies and clean up UML 
+[DONE]--> Document: Create project session test file (proper name convention and varied data)
+
+[DONE]--> Document: Improve UML diagram
+
+[]--> Refactor: Shuffle the model relationships/dependencies and clean up UML 
 				-- read down each file and note relationships (make jpeg when done)
-[]--> Document: Include instructions for Chrome and tabinfocopy use
-[]--> Finalize: Create zip file of all necessary elements and email.
+				-- clean up rats nest of dependencies, make relationships more elegant
+[DONE]--> Document: Include instructions for Chrome and tabinfocopy use
+[DONE]--> Finalize: Create zip file of all necessary elements and email.
 
 
 
@@ -47,6 +51,7 @@
 					add("", BookmarkWorkbench.mainManifest);		
 					SessionParser.scrap();
 					ManifestParser.initialize(BookmarkWorkbench.mainManifest.replace("_main_manifest.txt", ""));
+		-- Card interface should be utilized more inorder to form a stronger contract between card types
 
 
 
